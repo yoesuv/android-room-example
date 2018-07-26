@@ -8,4 +8,8 @@
         <item name="colorAccent">@color/indigo_500</item>
     </style>
 
+    <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+
+    </style>
+
 </resources>
