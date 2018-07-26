@@ -4,12 +4,9 @@ import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey
 
 @Entity
-class MyTask {
-
+class MyTask (val task: String){
     @PrimaryKey(autoGenerate = true)
     var idTask: Int? = null
-    var task: String? = null
-
 }
 
 
