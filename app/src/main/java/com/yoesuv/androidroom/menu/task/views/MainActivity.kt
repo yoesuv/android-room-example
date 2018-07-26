@@ -16,10 +16,12 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        viewModel = MainViewModel()
+        viewModel = MainViewModel(this)
 
         setupBinding()
         setupToolbar()
+
+        viewModel.insertTask()
     }
 
     private fun setupToolbar(){
