@@ -5,11 +5,15 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/pink_500</item>
         <item name="colorPrimaryDark">@color/pink_700</item>
-        <item name="colorAccent">@color/indigo_500</item>
+        <item name="colorAccent">@color/pink_500</item>
     </style>
 
     <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
 
+    </style>
+
+    <style name="FabStyle" parent="Theme.AppCompat.Light">
+        <item name="colorAccent">@color/pink_500</item>
     </style>
 
 </resources>

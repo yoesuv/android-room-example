@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         setupBinding()
         setupToolbar()
 
-        viewModel.insertTask()
+        //viewModel.insertTask()
         viewModel.showAllTask()
 
         setupRecycler()
