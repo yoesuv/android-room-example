@@ -29,7 +29,6 @@ class MainActivity : AppCompatActivity() {
         setupBinding()
         setupToolbar()
 
-        //viewModel.insertTask()
         viewModel.showAllTask()
 
         setupRecycler()
@@ -60,6 +59,7 @@ class MainActivity : AppCompatActivity() {
     private fun onListDataChange(listTask: MutableList<MyTask>){
         Log.d(AppConstant.TAG_DEBUG,"MainActivity # onListDataChange -> jumlah data ${listTask.size}")
         if(listTask.isNotEmpty()) {
+            this.listTask.clear()
             for (i: Int in 0 until (listTask.size)) {
                 this.listTask.add(listTask[i])
             }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <variable
@@ -26,6 +27,7 @@
                 android:textSize="18sp"
                 android:textColor="@android:color/white"/>
 
+            <!-- input task title -->
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -35,10 +37,14 @@
                     android:id="@+id/editTextTaskTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/hint_task_title"/>
+                    android:hint="@string/hint_task_title"
+                    android:inputType="text"
+                    android:imeOptions="actionDone"
+                    app:binding="@{popUpInsertTask.title}"/>
 
             </android.support.design.widget.TextInputLayout>
 
+            <!-- input task content -->
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -48,7 +54,10 @@
                     android:id="@+id/editTextTaskContent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/hint_task_content"/>
+                    android:hint="@string/hint_task_content"
+                    android:inputType="textMultiLine"
+                    android:imeOptions="actionDone"
+                    app:binding="@{popUpInsertTask.content}"/>
 
             </android.support.design.widget.TextInputLayout>
 
