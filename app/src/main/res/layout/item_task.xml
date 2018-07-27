@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="itemTask"
+            type="com.yoesuv.androidroom.menu.task.viewmodels.ItemTaskViewModel"/>
+    </data>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/textViewTaskTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/item_task_margin"
+            android:layout_marginLeft="@dimen/item_task_margin"
+            android:layout_marginRight="@dimen/item_task_margin"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:text="@{itemTask.title}"/>
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/textViewTaskContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/item_task_margin"
+            android:layout_marginRight="@dimen/item_task_margin"
+            android:layout_marginBottom="@dimen/item_task_margin"
+            android:text="@{itemTask.content}"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#9e9e9e"/>
+
+    </LinearLayout>
+
+</layout>

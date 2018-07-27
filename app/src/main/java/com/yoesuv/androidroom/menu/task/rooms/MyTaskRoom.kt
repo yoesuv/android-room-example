@@ -4,7 +4,7 @@ import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey
 
 @Entity
-class MyTask (val task: String){
+class MyTaskRoom (val task: String?, val content: String?){
     @PrimaryKey(autoGenerate = true)
     var idTask: Int? = null
 }
