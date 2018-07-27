@@ -66,23 +66,41 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <android.support.v7.widget.AppCompatButton
-                    android:id="@+id/buttonNewTaskCancel"
+                <RelativeLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/button_new_task_cancel"
-                    android:onClick="@{popUpInsertTask::clickCancel}"
-                    style="?attr/borderlessButtonStyle"/>
+                    android:layout_weight="1">
 
-                <android.support.v7.widget.AppCompatButton
-                    android:id="@+id/buttonNewTaskSave"
+                    <android.support.v7.widget.AppCompatButton
+                        android:id="@+id/buttonNewTaskCancel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="@string/button_new_task_cancel"
+                        android:onClick="@{popUpInsertTask::clickCancel}"
+                        android:drawableLeft="@drawable/ic_delete_sign"
+                        android:drawableStart="@drawable/ic_delete_sign"
+                        style="?attr/borderlessButtonStyle"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/button_new_task_save"
-                    android:onClick="@{popUpInsertTask::clickSave}"
-                    style="?attr/borderlessButtonStyle"/>
+                    android:layout_weight="1">
+
+                    <android.support.v7.widget.AppCompatButton
+                        android:id="@+id/buttonNewTaskSave"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="@string/button_new_task_save"
+                        android:onClick="@{popUpInsertTask::clickSave}"
+                        android:drawableLeft="@drawable/ic_save_as"
+                        android:drawableStart="@drawable/ic_save_as"
+                        style="?attr/borderlessButtonStyle"/>
+
+                </RelativeLayout>
 
             </LinearLayout>
 

@@ -48,12 +48,13 @@
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
-                android:src="@drawable/ic_add_white"
-                android:theme="@style/FabStyle"
+                android:src="@drawable/ic_plus"
                 android:layout_marginRight="@dimen/fab_margin"
                 android:layout_marginEnd="@dimen/fab_margin"
                 android:layout_marginBottom="@dimen/fab_margin"
-                android:onClick="@{main::showInsertTask}"/>
+                android:onClick="@{main::showInsertTask}"
+                app:backgroundTint="@android:color/white"
+                app:rippleColor="@color/pink_500"/>
 
         </RelativeLayout>
 
