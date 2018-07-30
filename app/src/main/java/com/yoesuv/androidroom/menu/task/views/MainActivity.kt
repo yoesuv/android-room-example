@@ -10,11 +10,12 @@ import android.util.Log
 import com.yoesuv.androidroom.R
 import com.yoesuv.androidroom.data.AppConstant
 import com.yoesuv.androidroom.databinding.ActivityMainBinding
+import com.yoesuv.androidroom.menu.task.AdapterOnClickListener
 import com.yoesuv.androidroom.menu.task.adapters.ListTaskAdapter
 import com.yoesuv.androidroom.menu.task.models.MyTask
 import com.yoesuv.androidroom.menu.task.viewmodels.MainViewModel
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), AdapterOnClickListener {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: MainViewModel
@@ -54,7 +55,7 @@ class MainActivity : AppCompatActivity() {
         binding.recyclerViewMain.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
         binding.recyclerViewMain.layoutManager = lManager
 
-        adapter = ListTaskAdapter(this, listTask)
+        adapter = ListTaskAdapter(this, listTask, this)
         binding.recyclerViewMain.adapter = adapter
     }
 
@@ -67,5 +68,15 @@ class MainActivity : AppCompatActivity() {
             }
             adapter.notifyDataSetChanged()
         }
+    }
+
+    override fun onItemAdapterClickedEdit(myTask: MyTask) {
+        Log.d(AppConstant.TAG_DEBUG,"MainActivity # edit ${myTask.titleTask}")
+    }
+
+    override fun onItemAdapterClickedDelete(myTask: MyTask, position: Int) {
+        Log.d(AppConstant.TAG_DEBUG,"MainActivity # delete $position/${myTask.titleTask}")
+        viewModel.deleteTask(myTask)
+        adapter.removeItem(binding.recyclerViewMain, position)
     }
 }

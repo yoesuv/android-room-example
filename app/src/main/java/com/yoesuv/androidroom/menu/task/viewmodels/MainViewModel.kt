@@ -28,7 +28,7 @@ class MainViewModel(private val activity: Activity) {
         val listTaskRoom: List<MyTaskRoom> = DatabaseAsyncSelectAll(taskDatabase).execute().get()
         val lisTaskAll: MutableList<MyTask> = mutableListOf()
         for(i:Int in 0 until(listTaskRoom.size)){
-                lisTaskAll.add(MyTask(listTaskRoom[i].idTask.toString(), listTaskRoom[i].task, listTaskRoom[i].content))
+                lisTaskAll.add(MyTask(listTaskRoom[i].idTask, listTaskRoom[i].task, listTaskRoom[i].content))
         }
         this.listTask.value = lisTaskAll
     }
@@ -47,6 +47,11 @@ class MainViewModel(private val activity: Activity) {
         dialog.show()
     }
 
+    fun deleteTask(myTask: MyTask){
+        val myTaskRoom = DatabaseAsyncGetTask(taskDatabase, myTask.idTask!!).execute().get()
+        DatabaseAsyncDelete(taskDatabase, myTaskRoom).execute()
+    }
+
     /**
      * select all from data task
      */
@@ -54,6 +59,25 @@ class MainViewModel(private val activity: Activity) {
 
         override fun doInBackground(vararg p0: Void?): List<MyTaskRoom> {
             return taskDatabase.appDaoAccess().selectAll()
+        }
+    }
+
+    /**
+     * get task
+     */
+    class DatabaseAsyncGetTask(private val taskDatabase: TaskDatabase, val id:Int): AsyncTask<Void, Void, MyTaskRoom>(){
+        override fun doInBackground(vararg p0: Void?): MyTaskRoom {
+            return taskDatabase.appDaoAccess().getTask(id)
+        }
+    }
+
+    /**
+     * delete data task
+     */
+    class DatabaseAsyncDelete(private val taskDatabase: TaskDatabase, private val myTaskRoom: MyTaskRoom): AsyncTask<Void, Void, List<MyTaskRoom>>(){
+        override fun doInBackground(vararg p0: Void?): List<MyTaskRoom>? {
+            taskDatabase.appDaoAccess().delete(myTaskRoom)
+            return null
         }
     }
 

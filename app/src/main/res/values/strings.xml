@@ -7,5 +7,6 @@
     <string name="button_new_task_save">SAVE</string>
     <string name="button_new_task_cancel">CANCEL</string>
     <string name="button_task_delete">DELETE</string>
+    <string name="button_task_edit">EDIT</string>
 
 </resources>

@@ -9,10 +9,11 @@ import com.daimajia.swipe.SwipeLayout
 import com.daimajia.swipe.adapters.RecyclerSwipeAdapter
 import com.yoesuv.androidroom.R
 import com.yoesuv.androidroom.databinding.ItemTaskBinding
+import com.yoesuv.androidroom.menu.task.AdapterOnClickListener
 import com.yoesuv.androidroom.menu.task.models.MyTask
 import com.yoesuv.androidroom.menu.task.viewmodels.ItemTaskViewModel
 
-class ListTaskAdapter(context: Context, private var listTask: MutableList<MyTask>?): RecyclerSwipeAdapter<ListTaskAdapter.TaskViewHolder>() {
+class ListTaskAdapter(context: Context, private var listTask: MutableList<MyTask>?, private val adapterOnClickListener: AdapterOnClickListener): RecyclerSwipeAdapter<ListTaskAdapter.TaskViewHolder>() {
 
     private val inflater = LayoutInflater.from(context)
 
@@ -26,7 +27,7 @@ class ListTaskAdapter(context: Context, private var listTask: MutableList<MyTask
     }
 
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
-        holder.setupItem(listTask!![holder.adapterPosition])
+        holder.setupItem(listTask!![holder.adapterPosition], adapterOnClickListener, holder.adapterPosition)
         mItemManger.bindView(holder.itemView, holder.adapterPosition)
     }
 
@@ -34,9 +35,19 @@ class ListTaskAdapter(context: Context, private var listTask: MutableList<MyTask
         return R.id.swipeLayoutItemTask
     }
 
+    fun removeItem(recyclerView: RecyclerView, position: Int){
+        //mItemManger.removeShownLayouts()
+        recyclerView.post({
+            this.listTask?.removeAt(position)
+            notifyItemRemoved(position)
+            notifyItemRangeChanged(position, this.listTask?.size!!)
+            mItemManger.closeAllItems()
+        })
+    }
+
     class TaskViewHolder(private val binding: ItemTaskBinding?) : RecyclerView.ViewHolder(binding?.root) {
-        fun setupItem(myTask: MyTask){
-            binding?.itemTask = ItemTaskViewModel(myTask)
+        fun setupItem(myTask: MyTask, adapterOnClickListener: AdapterOnClickListener, position: Int){
+            binding?.itemTask = ItemTaskViewModel(myTask, adapterOnClickListener, position)
             binding?.swipeLayoutItemTask?.showMode = SwipeLayout.ShowMode.LayDown
             binding?.swipeLayoutItemTask?.addDrag(SwipeLayout.DragEdge.Left, binding.bottomWrapper)
         }
