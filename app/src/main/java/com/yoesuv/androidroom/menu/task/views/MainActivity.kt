@@ -4,6 +4,7 @@ import android.arch.lifecycle.Observer
 import android.databinding.DataBindingUtil
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import com.yoesuv.androidroom.R
@@ -50,6 +51,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupRecycler(){
         val lManager = LinearLayoutManager(this)
+        binding.recyclerViewMain.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
         binding.recyclerViewMain.layoutManager = lManager
 
         adapter = ListTaskAdapter(this, listTask)

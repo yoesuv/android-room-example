@@ -27,36 +27,31 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/pink_500"
-                android:theme="@style/ToolbarTheme"/>
+                android:theme="@style/ToolbarTheme"
+                app:layout_scrollFlags="scroll|enterAlways"/>
 
         </android.support.design.widget.AppBarLayout>
 
-        <RelativeLayout
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerViewMain"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/recyclerViewMain"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-            <android.support.design.widget.FloatingActionButton
-                android:id="@+id/fabMain"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
-                android:src="@drawable/ic_plus"
-                android:layout_marginRight="@dimen/fab_margin"
-                android:layout_marginEnd="@dimen/fab_margin"
-                android:layout_marginBottom="@dimen/fab_margin"
-                android:onClick="@{main::showInsertTask}"
-                app:backgroundTint="@android:color/white"
-                app:rippleColor="@color/pink_500"/>
-
-        </RelativeLayout>
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fabMain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:src="@drawable/ic_plus"
+            android:layout_marginRight="@dimen/fab_margin"
+            android:layout_marginEnd="@dimen/fab_margin"
+            android:layout_marginBottom="@dimen/fab_margin"
+            android:onClick="@{main::showInsertTask}"
+            app:layout_behavior="com.yoesuv.androidroom.utils.CustomFavBehavior"
+            app:layout_anchorGravity="bottom|right|end"
+            app:backgroundTint="@android:color/white"
+            app:rippleColor="@color/pink_500"/>
 
     </android.support.design.widget.CoordinatorLayout>
 
