@@ -6,5 +6,6 @@
     <string name="hint_task_content">Task Content</string>
     <string name="button_new_task_save">SAVE</string>
     <string name="button_new_task_cancel">CANCEL</string>
+    <string name="button_task_delete">DELETE</string>
 
 </resources>
