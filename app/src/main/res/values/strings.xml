@@ -12,4 +12,7 @@
     <string name="button_task_edit">EDIT</string>
     <string name="button_task_update">UPDATE</string>
 
+    <string name="error_input_title_empty">Title is Empty</string>
+    <string name="error_input_content_empty">Content is Empty</string>
+
 </resources>

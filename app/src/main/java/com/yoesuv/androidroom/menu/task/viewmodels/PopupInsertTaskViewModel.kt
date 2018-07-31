@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.databinding.ObservableField
 import android.os.AsyncTask
 import android.view.View
+import com.yoesuv.androidroom.R
 import com.yoesuv.androidroom.menu.task.rooms.MyTaskRoom
 import com.yoesuv.androidroom.menu.task.rooms.TaskDatabase
 
@@ -12,14 +13,29 @@ class PopupInsertTaskViewModel(private val dialog: Dialog, private val taskDatab
     var title: ObservableField<String> = ObservableField()
     var content: ObservableField<String> = ObservableField()
 
+    var titleError: ObservableField<String> = ObservableField()
+    var contentError: ObservableField<String> = ObservableField()
+
     fun clickCancel(view: View){
         dialog.dismiss()
     }
 
     fun clickSave(view: View){
-        val myTask = MyTaskRoom(title.get(), content.get())
-        DatabaseAsync(myTask, taskDatabase, mainViewModel).execute()
-        dialog.dismiss()
+        titleError.set(null)
+        contentError.set(null)
+        when {
+            title.get()?.trim().equals("") -> {
+                titleError.set(dialog.context.getString(R.string.error_input_title_empty))
+            }
+            content.get()?.trim().equals("") -> {
+                contentError.set(dialog.context.getString(R.string.error_input_content_empty))
+            }
+            else -> {
+                val myTask = MyTaskRoom(title.get(), content.get())
+                DatabaseAsync(myTask, taskDatabase, mainViewModel).execute()
+                dialog.dismiss()
+            }
+        }
     }
 
     /**
