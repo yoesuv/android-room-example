@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity(), AdapterOnClickListener {
 
     private fun setupToolbar(){
         setSupportActionBar(binding.toolbarMain)
-        supportActionBar?.title = "My Task"
+        supportActionBar?.title = getString(R.string.my_task)
     }
 
     private fun setupBinding(){
