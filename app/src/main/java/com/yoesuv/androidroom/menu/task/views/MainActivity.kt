@@ -6,9 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import com.yoesuv.androidroom.R
-import com.yoesuv.androidroom.data.AppConstant
 import com.yoesuv.androidroom.databinding.ActivityMainBinding
 import com.yoesuv.androidroom.menu.task.AdapterOnClickListener
 import com.yoesuv.androidroom.menu.task.adapters.ListTaskAdapter
@@ -60,7 +58,6 @@ class MainActivity : AppCompatActivity(), AdapterOnClickListener {
     }
 
     private fun onListDataChange(listTask: MutableList<MyTask>){
-        Log.d(AppConstant.TAG_DEBUG,"MainActivity # onListDataChange -> jumlah data ${listTask.size}")
         if(listTask.isNotEmpty()) {
             this.listTask.clear()
             for (i: Int in 0 until (listTask.size)) {
@@ -71,12 +68,15 @@ class MainActivity : AppCompatActivity(), AdapterOnClickListener {
     }
 
     override fun onItemAdapterClickedEdit(myTask: MyTask) {
-        Log.d(AppConstant.TAG_DEBUG,"MainActivity # edit ${myTask.titleTask}")
+        viewModel.showUpdateTask(myTask, this)
     }
 
     override fun onItemAdapterClickedDelete(myTask: MyTask, position: Int) {
-        Log.d(AppConstant.TAG_DEBUG,"MainActivity # delete $position/${myTask.titleTask}")
         viewModel.deleteTask(myTask)
         adapter.removeItem(binding.recyclerViewMain, position)
+    }
+
+    override fun onUpdateCallback() {
+        adapter.updateItem(binding.recyclerViewMain)
     }
 }

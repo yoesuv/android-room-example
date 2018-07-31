@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="popUpUpdateTask"
+            type="com.yoesuv.androidroom.menu.task.viewmodels.PopUpUpdateTaskViewModel"/>
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:background="@color/pink_500"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:gravity="center"
+                android:text="@string/update_task"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="@android:color/white"/>
+
+            <!-- input task title -->
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/item_task_margin">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/editTextTaskTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/hint_task_title"
+                    android:inputType="text"
+                    android:imeOptions="actionDone"
+                    app:binding="@{popUpUpdateTask.title}"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <!-- input task content -->
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/item_task_margin">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/editTextTaskContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/hint_task_content"
+                    android:inputType="textMultiLine"
+                    android:imeOptions="actionDone"
+                    app:binding="@{popUpUpdateTask.content}"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <android.support.v7.widget.AppCompatButton
+                        android:id="@+id/buttonNewTaskCancel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="@string/button_new_task_cancel"
+                        android:onClick="@{popUpUpdateTask::clickCancel}"
+                        android:drawableLeft="@drawable/ic_delete_sign"
+                        android:drawableStart="@drawable/ic_delete_sign"
+                        style="?attr/borderlessButtonStyle"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <android.support.v7.widget.AppCompatButton
+                        android:id="@+id/buttonNewTaskSave"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="@string/button_task_update"
+                        android:onClick="@{popUpUpdateTask::clickUpdate}"
+                        android:drawableLeft="@drawable/ic_save_as"
+                        android:drawableStart="@drawable/ic_save_as"
+                        style="?attr/borderlessButtonStyle"/>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</layout>

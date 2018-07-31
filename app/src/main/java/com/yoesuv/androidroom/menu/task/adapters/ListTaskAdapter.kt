@@ -35,12 +35,24 @@ class ListTaskAdapter(context: Context, private var listTask: MutableList<MyTask
         return R.id.swipeLayoutItemTask
     }
 
+    /**
+     * remove item task
+     */
     fun removeItem(recyclerView: RecyclerView, position: Int){
-        //mItemManger.removeShownLayouts()
         recyclerView.post({
             this.listTask?.removeAt(position)
             notifyItemRemoved(position)
             notifyItemRangeChanged(position, this.listTask?.size!!)
+            mItemManger.closeAllItems()
+        })
+    }
+
+    /**
+     * update item task
+     */
+    fun updateItem(recyclerView: RecyclerView){
+        recyclerView.post({
+            notifyDataSetChanged()
             mItemManger.closeAllItems()
         })
     }

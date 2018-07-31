@@ -2,11 +2,13 @@
     <string name="app_name">Android Room</string>
 
     <string name="insert_new_task">Insert New Task</string>
+    <string name="update_task">Update Task</string>
     <string name="hint_task_title">Task Title</string>
     <string name="hint_task_content">Task Content</string>
     <string name="button_new_task_save">SAVE</string>
     <string name="button_new_task_cancel">CANCEL</string>
     <string name="button_task_delete">DELETE</string>
     <string name="button_task_edit">EDIT</string>
+    <string name="button_task_update">UPDATE</string>
 
 </resources>
