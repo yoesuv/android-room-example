@@ -2,7 +2,7 @@
 
 Basic CRUD App
 
-[Download APK](https://github.com/yoesuv/android-room-example/raw/master/com.yoesuv.androidroom-v1(1.0.0)-release.apk)
+[Download APK](https://drive.google.com/file/d/1fQ7KH2uGdrIJdIsFNpJ3CzrbP-28LtzJ/view)
 
 | Screenshot | Screenshot | Screenshot |
 | :--: | :--: | :--: |
