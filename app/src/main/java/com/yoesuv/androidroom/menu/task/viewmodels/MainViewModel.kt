@@ -11,7 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.yoesuv.androidroom.R
-import com.yoesuv.androidroom.menu.task.rooms.TaskDatabase
+import com.yoesuv.androidroom.db.TaskDatabase
 import com.yoesuv.androidroom.data.AppConstant
 import com.yoesuv.androidroom.databinding.PopupInsertTaskBinding
 import com.yoesuv.androidroom.databinding.PopupUpdateTaskBinding
@@ -73,7 +73,7 @@ class MainViewModel(private val activity: Activity) {
     class DatabaseAsyncSelectAll(private val taskDatabase: TaskDatabase): AsyncTask<Void, Void, List<MyTaskModel>>(){
 
         override fun doInBackground(vararg p0: Void?): List<MyTaskModel> {
-            return taskDatabase.appDaoAccess().selectAll()
+            return taskDatabase.tasksDaoAccess().selectAll()
         }
     }
 
@@ -82,7 +82,7 @@ class MainViewModel(private val activity: Activity) {
      */
     class DatabaseAsyncGetTask(private val taskDatabase: TaskDatabase, val id:Int): AsyncTask<Void, Void, MyTaskModel>(){
         override fun doInBackground(vararg p0: Void?): MyTaskModel {
-            return taskDatabase.appDaoAccess().getTask(id)
+            return taskDatabase.tasksDaoAccess().getTask(id)
         }
     }
 
@@ -91,7 +91,7 @@ class MainViewModel(private val activity: Activity) {
      */
     class DatabaseAsyncDelete(private val taskDatabase: TaskDatabase, private val myTaskRoom: MyTaskModel): AsyncTask<Void, Void, List<MyTaskModel>>(){
         override fun doInBackground(vararg p0: Void?): List<MyTaskModel>? {
-            taskDatabase.appDaoAccess().delete(myTaskRoom)
+            taskDatabase.tasksDaoAccess().delete(myTaskRoom)
             return null
         }
     }

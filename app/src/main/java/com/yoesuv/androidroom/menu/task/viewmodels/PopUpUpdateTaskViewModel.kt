@@ -7,7 +7,7 @@ import android.view.View
 import com.yoesuv.androidroom.R
 import com.yoesuv.androidroom.menu.task.AdapterOnClickListener
 import com.yoesuv.androidroom.menu.task.models.MyTaskModel
-import com.yoesuv.androidroom.menu.task.rooms.TaskDatabase
+import com.yoesuv.androidroom.db.TaskDatabase
 
 class PopUpUpdateTaskViewModel(private val dialog: Dialog, private val myTask: MyTaskModel, private val taskDatabase: TaskDatabase, private val mainViewModel: MainViewModel, private val iface: AdapterOnClickListener) {
 
@@ -46,7 +46,7 @@ class PopUpUpdateTaskViewModel(private val dialog: Dialog, private val myTask: M
      */
     class DatabaseAsyncGetTask(private val taskDatabase: TaskDatabase, val id:Int): AsyncTask<Void, Void, MyTaskModel>(){
         override fun doInBackground(vararg p0: Void?): MyTaskModel {
-            return taskDatabase.appDaoAccess().getTask(id)
+            return taskDatabase.tasksDaoAccess().getTask(id)
         }
     }
 
@@ -56,7 +56,7 @@ class PopUpUpdateTaskViewModel(private val dialog: Dialog, private val myTask: M
     class DatabaseAsyncUpdateTask(private val taskDatabase: TaskDatabase, private val myTaskRoom: MyTaskModel, private val mainViewModel: MainViewModel): AsyncTask<Void, Void, Void>(){
 
         override fun doInBackground(vararg p0: Void?): Void? {
-            taskDatabase.appDaoAccess().updateTask(myTaskRoom)
+            taskDatabase.tasksDaoAccess().updateTask(myTaskRoom)
             return null
         }
 

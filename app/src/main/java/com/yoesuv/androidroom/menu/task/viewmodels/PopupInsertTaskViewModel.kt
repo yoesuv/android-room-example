@@ -6,7 +6,7 @@ import android.os.AsyncTask
 import android.view.View
 import com.yoesuv.androidroom.R
 import com.yoesuv.androidroom.menu.task.models.MyTaskModel
-import com.yoesuv.androidroom.menu.task.rooms.TaskDatabase
+import com.yoesuv.androidroom.db.TaskDatabase
 
 class PopupInsertTaskViewModel(private val dialog: Dialog, private val taskDatabase: TaskDatabase, private val mainViewModel: MainViewModel) {
 
@@ -44,7 +44,7 @@ class PopupInsertTaskViewModel(private val dialog: Dialog, private val taskDatab
     class DatabaseAsync(private val myTaskRoom: MyTaskModel, private val taskDatabase: TaskDatabase, private val mainViewModel: MainViewModel): AsyncTask<Void, Void, Void>(){
 
         override fun doInBackground(vararg p0: Void?): Void? {
-            taskDatabase.appDaoAccess().insertTask(myTaskRoom)
+            taskDatabase.tasksDaoAccess().insertTask(myTaskRoom)
             return null
         }
 

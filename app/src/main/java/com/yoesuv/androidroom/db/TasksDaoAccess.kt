@@ -1,10 +1,10 @@
-package com.yoesuv.androidroom
+package com.yoesuv.androidroom.db
 
 import androidx.room.*
 import com.yoesuv.androidroom.menu.task.models.MyTaskModel
 
 @Dao
-interface AppDaoAccess {
+interface TasksDaoAccess {
 
     @Insert
     fun insertTask(myTaskModel: MyTaskModel)
@@ -20,5 +20,8 @@ interface AppDaoAccess {
 
     @Delete
     fun delete(myTaskModel: MyTaskModel)
+
+    @Query("DELETE FROM my_tasks")
+    fun deleteAll()
 
 }
