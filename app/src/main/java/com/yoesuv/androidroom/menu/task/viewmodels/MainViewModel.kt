@@ -16,21 +16,20 @@ import com.yoesuv.androidroom.data.AppConstant
 import com.yoesuv.androidroom.databinding.PopupInsertTaskBinding
 import com.yoesuv.androidroom.databinding.PopupUpdateTaskBinding
 import com.yoesuv.androidroom.menu.task.AdapterOnClickListener
-import com.yoesuv.androidroom.menu.task.models.MyTask
-import com.yoesuv.androidroom.menu.task.rooms.MyTaskRoom
+import com.yoesuv.androidroom.menu.task.models.MyTaskModel
 import com.yoesuv.androidroom.utils.Utility
 
 class MainViewModel(private val activity: Activity) {
 
     private var taskDatabase: TaskDatabase = Room.databaseBuilder(activity, TaskDatabase::class.java, AppConstant.DATABASE_NAME).build()
 
-    var listTask: MutableLiveData<MutableList<MyTask>> = MutableLiveData()
+    var listTask: MutableLiveData<MutableList<MyTaskModel>> = MutableLiveData()
 
     fun showAllTask(){
-        val listTaskRoom: List<MyTaskRoom> = DatabaseAsyncSelectAll(taskDatabase).execute().get()
-        val lisTaskAll: MutableList<MyTask> = mutableListOf()
+        val listTaskRoom: List<MyTaskModel> = DatabaseAsyncSelectAll(taskDatabase).execute().get()
+        val lisTaskAll: MutableList<MyTaskModel> = mutableListOf()
         for(i:Int in 0 until(listTaskRoom.size)){
-                lisTaskAll.add(MyTask(listTaskRoom[i].idTask, listTaskRoom[i].task, listTaskRoom[i].content))
+                lisTaskAll.add(MyTaskModel(listTaskRoom[i].idTask, listTaskRoom[i].titleTask, listTaskRoom[i].contentTask))
         }
         this.listTask.value = lisTaskAll
     }
@@ -49,7 +48,7 @@ class MainViewModel(private val activity: Activity) {
         dialog.show()
     }
 
-    fun showUpdateTask(myTask: MyTask, adapterOnClickListener: AdapterOnClickListener){
+    fun showUpdateTask(myTask: MyTaskModel, adapterOnClickListener: AdapterOnClickListener){
         val dialog = Dialog(activity)
         val popUpBinding: PopupUpdateTaskBinding = DataBindingUtil.inflate(LayoutInflater.from(activity), R.layout.popup_update_task, null, false)
         popUpBinding.popUpUpdateTask = PopUpUpdateTaskViewModel(dialog, myTask, taskDatabase, this, adapterOnClickListener)
@@ -63,7 +62,7 @@ class MainViewModel(private val activity: Activity) {
         dialog.show()
     }
 
-    fun deleteTask(myTask: MyTask){
+    fun deleteTask(myTask: MyTaskModel){
         val myTaskRoom = DatabaseAsyncGetTask(taskDatabase, myTask.idTask!!).execute().get()
         DatabaseAsyncDelete(taskDatabase, myTaskRoom).execute()
     }
@@ -71,9 +70,9 @@ class MainViewModel(private val activity: Activity) {
     /**
      * select all from data task
      */
-    class DatabaseAsyncSelectAll(private val taskDatabase: TaskDatabase): AsyncTask<Void, Void, List<MyTaskRoom>>(){
+    class DatabaseAsyncSelectAll(private val taskDatabase: TaskDatabase): AsyncTask<Void, Void, List<MyTaskModel>>(){
 
-        override fun doInBackground(vararg p0: Void?): List<MyTaskRoom> {
+        override fun doInBackground(vararg p0: Void?): List<MyTaskModel> {
             return taskDatabase.appDaoAccess().selectAll()
         }
     }
@@ -81,8 +80,8 @@ class MainViewModel(private val activity: Activity) {
     /**
      * get task
      */
-    class DatabaseAsyncGetTask(private val taskDatabase: TaskDatabase, val id:Int): AsyncTask<Void, Void, MyTaskRoom>(){
-        override fun doInBackground(vararg p0: Void?): MyTaskRoom {
+    class DatabaseAsyncGetTask(private val taskDatabase: TaskDatabase, val id:Int): AsyncTask<Void, Void, MyTaskModel>(){
+        override fun doInBackground(vararg p0: Void?): MyTaskModel {
             return taskDatabase.appDaoAccess().getTask(id)
         }
     }
@@ -90,8 +89,8 @@ class MainViewModel(private val activity: Activity) {
     /**
      * delete data task
      */
-    class DatabaseAsyncDelete(private val taskDatabase: TaskDatabase, private val myTaskRoom: MyTaskRoom): AsyncTask<Void, Void, List<MyTaskRoom>>(){
-        override fun doInBackground(vararg p0: Void?): List<MyTaskRoom>? {
+    class DatabaseAsyncDelete(private val taskDatabase: TaskDatabase, private val myTaskRoom: MyTaskModel): AsyncTask<Void, Void, List<MyTaskModel>>(){
+        override fun doInBackground(vararg p0: Void?): List<MyTaskModel>? {
             taskDatabase.appDaoAccess().delete(myTaskRoom)
             return null
         }

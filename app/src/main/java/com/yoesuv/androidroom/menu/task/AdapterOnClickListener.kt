@@ -1,9 +1,9 @@
 package com.yoesuv.androidroom.menu.task
 
-import com.yoesuv.androidroom.menu.task.models.MyTask
+import com.yoesuv.androidroom.menu.task.models.MyTaskModel
 
 interface AdapterOnClickListener {
-    fun onItemAdapterClickedEdit(myTask: MyTask)
-    fun onItemAdapterClickedDelete(myTask: MyTask, position: Int)
+    fun onItemAdapterClickedEdit(myTask: MyTaskModel)
+    fun onItemAdapterClickedDelete(myTask: MyTaskModel, position: Int)
     fun onUpdateCallback()
 }

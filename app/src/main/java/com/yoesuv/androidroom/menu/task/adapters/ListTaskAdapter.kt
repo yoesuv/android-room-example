@@ -10,10 +10,10 @@ import com.daimajia.swipe.adapters.RecyclerSwipeAdapter
 import com.yoesuv.androidroom.R
 import com.yoesuv.androidroom.databinding.ItemTaskBinding
 import com.yoesuv.androidroom.menu.task.AdapterOnClickListener
-import com.yoesuv.androidroom.menu.task.models.MyTask
+import com.yoesuv.androidroom.menu.task.models.MyTaskModel
 import com.yoesuv.androidroom.menu.task.viewmodels.ItemTaskViewModel
 
-class ListTaskAdapter(context: Context, private var listTask: MutableList<MyTask>?, private val adapterOnClickListener: AdapterOnClickListener): RecyclerSwipeAdapter<ListTaskAdapter.TaskViewHolder>() {
+class ListTaskAdapter(context: Context, private var listTask: MutableList<MyTaskModel>?, private val adapterOnClickListener: AdapterOnClickListener): RecyclerSwipeAdapter<ListTaskAdapter.TaskViewHolder>() {
 
     private val inflater = LayoutInflater.from(context)
 
@@ -58,7 +58,7 @@ class ListTaskAdapter(context: Context, private var listTask: MutableList<MyTask
     }
 
     class TaskViewHolder(private val binding: ItemTaskBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun setupItem(myTask: MyTask, adapterOnClickListener: AdapterOnClickListener, position: Int){
+        fun setupItem(myTask: MyTaskModel, adapterOnClickListener: AdapterOnClickListener, position: Int){
             binding?.itemTask = ItemTaskViewModel(myTask, adapterOnClickListener, position)
             binding?.swipeLayoutItemTask?.showMode = SwipeLayout.ShowMode.LayDown
             binding?.swipeLayoutItemTask?.addDrag(SwipeLayout.DragEdge.Left, binding.bottomWrapper)

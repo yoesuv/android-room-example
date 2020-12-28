@@ -5,7 +5,7 @@ import androidx.databinding.ObservableField
 import android.os.AsyncTask
 import android.view.View
 import com.yoesuv.androidroom.R
-import com.yoesuv.androidroom.menu.task.rooms.MyTaskRoom
+import com.yoesuv.androidroom.menu.task.models.MyTaskModel
 import com.yoesuv.androidroom.menu.task.rooms.TaskDatabase
 
 class PopupInsertTaskViewModel(private val dialog: Dialog, private val taskDatabase: TaskDatabase, private val mainViewModel: MainViewModel) {
@@ -31,7 +31,7 @@ class PopupInsertTaskViewModel(private val dialog: Dialog, private val taskDatab
                 contentError.set(dialog.context.getString(R.string.error_input_content_empty))
             }
             else -> {
-                val myTask = MyTaskRoom(title.get(), content.get())
+                val myTask = MyTaskModel(titleTask =  title.get(), contentTask = content.get())
                 DatabaseAsync(myTask, taskDatabase, mainViewModel).execute()
                 dialog.dismiss()
             }
@@ -41,7 +41,7 @@ class PopupInsertTaskViewModel(private val dialog: Dialog, private val taskDatab
     /**
      * insert data task
      */
-    class DatabaseAsync(private val myTaskRoom: MyTaskRoom, private val taskDatabase: TaskDatabase, private val mainViewModel: MainViewModel): AsyncTask<Void, Void, Void>(){
+    class DatabaseAsync(private val myTaskRoom: MyTaskModel, private val taskDatabase: TaskDatabase, private val mainViewModel: MainViewModel): AsyncTask<Void, Void, Void>(){
 
         override fun doInBackground(vararg p0: Void?): Void? {
             taskDatabase.appDaoAccess().insertTask(myTaskRoom)

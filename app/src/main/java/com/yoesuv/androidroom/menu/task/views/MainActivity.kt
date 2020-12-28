@@ -4,13 +4,11 @@ import androidx.lifecycle.Observer
 import androidx.databinding.DataBindingUtil
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.yoesuv.androidroom.R
 import com.yoesuv.androidroom.databinding.ActivityMainBinding
 import com.yoesuv.androidroom.menu.task.AdapterOnClickListener
 import com.yoesuv.androidroom.menu.task.adapters.ListTaskAdapter
-import com.yoesuv.androidroom.menu.task.models.MyTask
+import com.yoesuv.androidroom.menu.task.models.MyTaskModel
 import com.yoesuv.androidroom.menu.task.viewmodels.MainViewModel
 
 class MainActivity : AppCompatActivity(), AdapterOnClickListener {
@@ -19,7 +17,7 @@ class MainActivity : AppCompatActivity(), AdapterOnClickListener {
     private lateinit var viewModel: MainViewModel
 
     private lateinit var adapter: ListTaskAdapter
-    private var listTask: MutableList<MyTask> = mutableListOf()
+    private var listTask: MutableList<MyTaskModel> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,7 +55,7 @@ class MainActivity : AppCompatActivity(), AdapterOnClickListener {
         binding.recyclerViewMain.adapter = adapter
     }
 
-    private fun onListDataChange(listTask: MutableList<MyTask>){
+    private fun onListDataChange(listTask: MutableList<MyTaskModel>){
         if(listTask.isNotEmpty()) {
             this.listTask.clear()
             for (i: Int in 0 until (listTask.size)) {
@@ -67,11 +65,11 @@ class MainActivity : AppCompatActivity(), AdapterOnClickListener {
         }
     }
 
-    override fun onItemAdapterClickedEdit(myTask: MyTask) {
+    override fun onItemAdapterClickedEdit(myTask: MyTaskModel) {
         viewModel.showUpdateTask(myTask, this)
     }
 
-    override fun onItemAdapterClickedDelete(myTask: MyTask, position: Int) {
+    override fun onItemAdapterClickedDelete(myTask: MyTaskModel, position: Int) {
         viewModel.deleteTask(myTask)
         adapter.removeItem(binding.recyclerViewMain, position)
     }

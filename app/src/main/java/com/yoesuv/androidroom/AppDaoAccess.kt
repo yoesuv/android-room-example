@@ -1,25 +1,24 @@
 package com.yoesuv.androidroom
 
 import androidx.room.*
-import com.yoesuv.androidroom.menu.task.models.MyTask
-import com.yoesuv.androidroom.menu.task.rooms.MyTaskRoom
+import com.yoesuv.androidroom.menu.task.models.MyTaskModel
 
 @Dao
 interface AppDaoAccess {
 
     @Insert
-    fun insertTask(myTaskRoom: MyTaskRoom)
+    fun insertTask(myTaskModel: MyTaskModel)
 
-    @Query("SELECT * FROM MyTaskRoom")
-    fun selectAll(): List<MyTaskRoom>
+    @Query("SELECT * FROM my_tasks")
+    fun selectAll(): List<MyTaskModel>
 
-    @Query("SELECT * FROM MyTaskRoom WHERE idTask=:idTask")
-    fun getTask(idTask: Int): MyTaskRoom
+    @Query("SELECT * FROM my_tasks WHERE idTask=:idTask")
+    fun getTask(idTask: Int): MyTaskModel
 
     @Update
-    fun updateTask(myTaskRoom: MyTaskRoom)
+    fun updateTask(myTaskModel: MyTaskModel)
 
     @Delete
-    fun delete(myTaskRoom: MyTaskRoom)
+    fun delete(myTaskModel: MyTaskModel)
 
 }

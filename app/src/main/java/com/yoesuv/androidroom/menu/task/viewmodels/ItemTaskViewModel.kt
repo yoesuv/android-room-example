@@ -3,9 +3,9 @@ package com.yoesuv.androidroom.menu.task.viewmodels
 import androidx.databinding.ObservableField
 import android.view.View
 import com.yoesuv.androidroom.menu.task.AdapterOnClickListener
-import com.yoesuv.androidroom.menu.task.models.MyTask
+import com.yoesuv.androidroom.menu.task.models.MyTaskModel
 
-class ItemTaskViewModel(private val myTask: MyTask, private val adapterOnClickListener: AdapterOnClickListener, private val position: Int) {
+class ItemTaskViewModel(private val myTask: MyTaskModel, private val adapterOnClickListener: AdapterOnClickListener, private val position: Int) {
 
     var title: ObservableField<String?> = ObservableField(myTask.titleTask)
     var content: ObservableField<String?> = ObservableField(myTask.contentTask)
