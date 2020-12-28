@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:background="@color/pink_500"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
@@ -36,6 +36,7 @@
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/editTextTaskTitle"
+                    android:background="@android:color/white"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/hint_task_title"
@@ -54,6 +55,7 @@
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/editTextTaskContent"
+                    android:background="@android:color/white"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/hint_task_content"
