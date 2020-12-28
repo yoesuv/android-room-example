@@ -57,7 +57,7 @@ class ListTaskAdapter(context: Context, private var listTask: MutableList<MyTask
         })
     }
 
-    class TaskViewHolder(private val binding: ItemTaskBinding?) : RecyclerView.ViewHolder(binding?.root) {
+    class TaskViewHolder(private val binding: ItemTaskBinding) : RecyclerView.ViewHolder(binding.root) {
         fun setupItem(myTask: MyTask, adapterOnClickListener: AdapterOnClickListener, position: Int){
             binding?.itemTask = ItemTaskViewModel(myTask, adapterOnClickListener, position)
             binding?.swipeLayoutItemTask?.showMode = SwipeLayout.ShowMode.LayDown
