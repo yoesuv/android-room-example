@@ -1,7 +1,7 @@
 package com.yoesuv.androidroom.menu.task.rooms
 
-import android.arch.persistence.room.Entity
-import android.arch.persistence.room.PrimaryKey
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
 @Entity
 class MyTaskRoom (var task: String?, var content: String?){

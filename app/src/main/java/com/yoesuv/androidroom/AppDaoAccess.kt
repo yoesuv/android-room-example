@@ -1,6 +1,6 @@
 package com.yoesuv.androidroom
 
-import android.arch.persistence.room.*
+import androidx.room.*
 import com.yoesuv.androidroom.menu.task.models.MyTask
 import com.yoesuv.androidroom.menu.task.rooms.MyTaskRoom
 

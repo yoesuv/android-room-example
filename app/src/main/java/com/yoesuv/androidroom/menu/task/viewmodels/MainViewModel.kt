@@ -2,9 +2,9 @@ package com.yoesuv.androidroom.menu.task.viewmodels
 
 import android.app.Activity
 import android.app.Dialog
-import android.arch.lifecycle.MutableLiveData
-import android.arch.persistence.room.Room
-import android.databinding.DataBindingUtil
+import androidx.lifecycle.MutableLiveData
+import androidx.room.Room
+import androidx.databinding.DataBindingUtil
 import android.graphics.Point
 import android.os.AsyncTask
 import android.view.LayoutInflater

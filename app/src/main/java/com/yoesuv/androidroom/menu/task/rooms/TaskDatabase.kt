@@ -1,7 +1,7 @@
 package com.yoesuv.androidroom.menu.task.rooms
 
-import android.arch.persistence.room.Database
-import android.arch.persistence.room.RoomDatabase
+import androidx.room.Database
+import androidx.room.RoomDatabase
 import com.yoesuv.androidroom.AppDaoAccess
 
 @Database(entities = [(MyTaskRoom::class)], version = 1)

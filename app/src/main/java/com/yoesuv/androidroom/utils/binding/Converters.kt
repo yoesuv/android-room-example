@@ -1,8 +1,8 @@
 package com.yoesuv.androidroom.utils.binding
 
-import android.databinding.BindingAdapter
-import android.databinding.ObservableField
-import android.support.v7.widget.AppCompatEditText
+import androidx.databinding.BindingAdapter
+import androidx.databinding.ObservableField
+import androidx.appcompat.widget.AppCompatEditText
 import com.yoesuv.androidroom.R
 
 class Converters {

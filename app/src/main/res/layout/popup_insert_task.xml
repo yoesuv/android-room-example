@@ -28,13 +28,13 @@
                 android:textColor="@android:color/white"/>
 
             <!-- input task title -->
-            <android.support.design.widget.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/item_task_margin"
                 app:error="@{popUpInsertTask.titleError}">
 
-                <android.support.v7.widget.AppCompatEditText
+                <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/editTextTaskTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -43,16 +43,16 @@
                     android:imeOptions="actionDone"
                     app:binding="@{popUpInsertTask.title}"/>
 
-            </android.support.design.widget.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
             <!-- input task content -->
-            <android.support.design.widget.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/item_task_margin"
                 app:error="@{popUpInsertTask.contentError}">
 
-                <android.support.v7.widget.AppCompatEditText
+                <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/editTextTaskContent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -61,7 +61,7 @@
                     android:imeOptions="actionDone"
                     app:binding="@{popUpInsertTask.content}"/>
 
-            </android.support.design.widget.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -73,7 +73,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1">
 
-                    <android.support.v7.widget.AppCompatButton
+                    <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/buttonNewTaskCancel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -91,7 +91,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1">
 
-                    <android.support.v7.widget.AppCompatButton
+                    <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/buttonNewTaskSave"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

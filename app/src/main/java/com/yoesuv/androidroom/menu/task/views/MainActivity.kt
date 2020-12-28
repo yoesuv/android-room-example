@@ -1,11 +1,11 @@
 package com.yoesuv.androidroom.menu.task.views
 
-import android.arch.lifecycle.Observer
-import android.databinding.DataBindingUtil
-import android.support.v7.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.databinding.DataBindingUtil
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v7.widget.DividerItemDecoration
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.yoesuv.androidroom.R
 import com.yoesuv.androidroom.databinding.ActivityMainBinding
 import com.yoesuv.androidroom.menu.task.AdapterOnClickListener
@@ -49,8 +49,8 @@ class MainActivity : AppCompatActivity(), AdapterOnClickListener {
     }
 
     private fun setupRecycler(){
-        val lManager = LinearLayoutManager(this)
-        binding.recyclerViewMain.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
+        val lManager = androidx.recyclerview.widget.LinearLayoutManager(this)
+        binding.recyclerViewMain.addItemDecoration(androidx.recyclerview.widget.DividerItemDecoration(this, androidx.recyclerview.widget.DividerItemDecoration.VERTICAL))
         binding.recyclerViewMain.layoutManager = lManager
 
         adapter = ListTaskAdapter(this, listTask, this)
