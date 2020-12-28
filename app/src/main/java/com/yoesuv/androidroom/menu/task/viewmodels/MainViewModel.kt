@@ -44,7 +44,7 @@ class MainViewModel(private val activity: Activity) {
         val width = size.x
         val widthReduce = (width * 10) /100
         val widthShow = width - widthReduce
-        dialog.window.setLayout(widthShow, ViewGroup.LayoutParams.WRAP_CONTENT)
+        dialog.window?.setLayout(widthShow, ViewGroup.LayoutParams.WRAP_CONTENT)
         dialog.setCanceledOnTouchOutside(false)
         dialog.show()
     }
@@ -58,7 +58,7 @@ class MainViewModel(private val activity: Activity) {
         val width = size.x
         val widthReduce = (width * 10) /100
         val widthShow = width - widthReduce
-        dialog.window.setLayout(widthShow, ViewGroup.LayoutParams.WRAP_CONTENT)
+        dialog.window?.setLayout(widthShow, ViewGroup.LayoutParams.WRAP_CONTENT)
         dialog.setCanceledOnTouchOutside(false)
         dialog.show()
     }
