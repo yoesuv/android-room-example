@@ -29,11 +29,11 @@ class MainViewModel(application: Application): AndroidViewModel(application) {
     }
 
     fun showInsertTask(view: View){
-        dialogInsertUpdateTask(view.context)
+        dialogInsertUpdateTask(view.context, null)
     }
 
     fun showUpdateTask(activity: Activity, myTask: MyTaskModel, adapterOnClickListener: AdapterOnClickListener){
-        dialogInsertUpdateTask(activity)
+        dialogInsertUpdateTask(activity, myTask)
     }
 
     fun deleteTask(myTask: MyTaskModel){

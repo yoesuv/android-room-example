@@ -6,9 +6,10 @@ import android.view.LayoutInflater
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.customview.customView
 import com.yoesuv.androidroom.databinding.PopupInsertUpdateTaskBinding
+import com.yoesuv.androidroom.menu.task.models.MyTaskModel
 import com.yoesuv.androidroom.menu.task.viewmodels.PopupInsertUpdateTaskViewModel
 
-fun dialogInsertUpdateTask(context: Context) {
+fun dialogInsertUpdateTask(context: Context, myTaskModel: MyTaskModel?) {
 
     val binding = PopupInsertUpdateTaskBinding.inflate(LayoutInflater.from(context))
     val dialog = MaterialDialog(context).customView(view = binding.root, noVerticalPadding = true, horizontalPadding = false)
@@ -17,6 +18,7 @@ fun dialogInsertUpdateTask(context: Context) {
         dialog.dismiss()
     }
     binding.popup = viewModel
+    viewModel.setupData(context, myTaskModel)
 
     binding.buttonCancel.setOnClickListener {
         dialog.dismiss()

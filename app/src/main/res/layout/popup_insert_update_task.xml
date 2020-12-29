@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
         <variable
@@ -22,10 +23,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:gravity="center"
-                android:text="@string/insert_new_task"
+                android:text="@{popup.popupTitle}"
                 android:textStyle="bold"
                 android:textSize="18sp"
-                android:textColor="@android:color/white"/>
+                android:textColor="@android:color/white"
+                tools:text="@string/insert_new_task"/>
 
             <!-- input task title -->
             <com.google.android.material.textfield.TextInputLayout
@@ -80,7 +82,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
-                        android:text="@string/button_new_task_cancel"
+                        android:text="@android:string/cancel"
                         android:drawableLeft="@drawable/ic_delete_sign"
                         android:drawableStart="@drawable/ic_delete_sign"
                         style="?attr/borderlessButtonStyle"/>
@@ -97,11 +99,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
-                        android:text="@string/button_new_task_save"
+                        android:text="@{popup.buttonAction}"
                         android:drawableLeft="@drawable/ic_save_as"
                         android:drawableStart="@drawable/ic_save_as"
                         android:onClick="@{popup::clickApply}"
-                        style="?attr/borderlessButtonStyle"/>
+                        style="?attr/borderlessButtonStyle"
+                        tools:text="@string/button_new_task_save"/>
 
                 </RelativeLayout>
 
