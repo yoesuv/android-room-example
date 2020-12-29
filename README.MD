@@ -1,4 +1,4 @@
-# Android Room Training #
+# Android Room Example #
 
 Basic CRUD App
 
@@ -12,3 +12,4 @@ Basic CRUD App
 **List Libraries used In This Project**
 
 * [Android Swipe Layout](https://github.com/daimajia/AndroidSwipeLayout)
+* [Material Dialogs](https://github.com/afollestad/material-dialogs)

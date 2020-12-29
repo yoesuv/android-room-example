@@ -31,8 +31,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/item_task_margin"
-                app:error="@{popUpInsertTask.titleError}">
+                android:layout_marginTop="@dimen/item_task_margin">
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/editTextTaskTitle"
@@ -41,8 +40,7 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/hint_task_title"
                     android:inputType="text"
-                    android:imeOptions="actionDone"
-                    app:binding="@{popUpInsertTask.title}"/>
+                    android:imeOptions="actionDone" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -50,8 +48,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/item_task_margin"
-                app:error="@{popUpInsertTask.contentError}">
+                android:layout_marginBottom="@dimen/item_task_margin">
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/editTextTaskContent"
@@ -60,8 +57,7 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/hint_task_content"
                     android:inputType="textMultiLine"
-                    android:imeOptions="actionDone"
-                    app:binding="@{popUpInsertTask.content}"/>
+                    android:imeOptions="actionDone" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -76,12 +72,11 @@
                     android:layout_weight="1">
 
                     <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/buttonNewTaskCancel"
+                        android:id="@+id/buttonCancel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
                         android:text="@string/button_new_task_cancel"
-                        android:onClick="@{popUpInsertTask::clickCancel}"
                         android:drawableLeft="@drawable/ic_delete_sign"
                         android:drawableStart="@drawable/ic_delete_sign"
                         style="?attr/borderlessButtonStyle"/>
@@ -94,12 +89,11 @@
                     android:layout_weight="1">
 
                     <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/buttonNewTaskSave"
+                        android:id="@+id/buttonApply"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
                         android:text="@string/button_new_task_save"
-                        android:onClick="@{popUpInsertTask::clickSave}"
                         android:drawableLeft="@drawable/ic_save_as"
                         android:drawableStart="@drawable/ic_save_as"
                         style="?attr/borderlessButtonStyle"/>

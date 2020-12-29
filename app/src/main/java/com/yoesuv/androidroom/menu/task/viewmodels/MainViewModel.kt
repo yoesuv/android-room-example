@@ -15,11 +15,11 @@ import androidx.lifecycle.AndroidViewModel
 import com.yoesuv.androidroom.R
 import com.yoesuv.androidroom.db.TaskDatabase
 import com.yoesuv.androidroom.data.AppConstant
-import com.yoesuv.androidroom.databinding.PopupInsertTaskBinding
 import com.yoesuv.androidroom.databinding.PopupUpdateTaskBinding
 import com.yoesuv.androidroom.menu.task.AdapterOnClickListener
 import com.yoesuv.androidroom.menu.task.models.MyTaskModel
 import com.yoesuv.androidroom.utils.Utility
+import com.yoesuv.androidroom.utils.dialogInsertUpdateTask
 
 class MainViewModel(application: Application): AndroidViewModel(application) {
 
@@ -37,13 +37,7 @@ class MainViewModel(application: Application): AndroidViewModel(application) {
     }
 
     fun showInsertTask(view: View){
-        val context = view.context
-        val dialog = Dialog(context)
-        val popupBinding: PopupInsertTaskBinding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.popup_insert_task, null, false)
-        popupBinding.popUpInsertTask = PopupInsertTaskViewModel(dialog, taskDatabase, this)
-        dialog.setContentView(popupBinding.root)
-        dialog.setCanceledOnTouchOutside(false)
-        dialog.show()
+        dialogInsertUpdateTask(view.context)
     }
 
     fun showUpdateTask(activity: Activity, myTask: MyTaskModel, adapterOnClickListener: AdapterOnClickListener){
