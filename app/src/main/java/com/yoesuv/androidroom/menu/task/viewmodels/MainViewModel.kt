@@ -1,6 +1,7 @@
 package com.yoesuv.androidroom.menu.task.viewmodels
 
 import android.app.Activity
+import android.app.Application
 import android.app.Dialog
 import androidx.lifecycle.MutableLiveData
 import androidx.room.Room
@@ -10,6 +11,7 @@ import android.os.AsyncTask
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.AndroidViewModel
 import com.yoesuv.androidroom.R
 import com.yoesuv.androidroom.db.TaskDatabase
 import com.yoesuv.androidroom.data.AppConstant
@@ -19,9 +21,9 @@ import com.yoesuv.androidroom.menu.task.AdapterOnClickListener
 import com.yoesuv.androidroom.menu.task.models.MyTaskModel
 import com.yoesuv.androidroom.utils.Utility
 
-class MainViewModel(private val activity: Activity) {
+class MainViewModel(application: Application): AndroidViewModel(application) {
 
-    private var taskDatabase: TaskDatabase = Room.databaseBuilder(activity, TaskDatabase::class.java, AppConstant.DATABASE_NAME).build()
+    private var taskDatabase: TaskDatabase = Room.databaseBuilder(application.applicationContext, TaskDatabase::class.java, AppConstant.DATABASE_NAME).build()
 
     var listTask: MutableLiveData<MutableList<MyTaskModel>> = MutableLiveData()
 
@@ -35,20 +37,16 @@ class MainViewModel(private val activity: Activity) {
     }
 
     fun showInsertTask(view: View){
-        val dialog = Dialog(activity)
-        val popupBinding: PopupInsertTaskBinding = DataBindingUtil.inflate(LayoutInflater.from(activity), R.layout.popup_insert_task, null, false)
+        val context = view.context
+        val dialog = Dialog(context)
+        val popupBinding: PopupInsertTaskBinding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.popup_insert_task, null, false)
         popupBinding.popUpInsertTask = PopupInsertTaskViewModel(dialog, taskDatabase, this)
         dialog.setContentView(popupBinding.root)
-        val size:Point = Utility.getScreenSize(activity)
-        val width = size.x
-        val widthReduce = (width * 10) /100
-        val widthShow = width - widthReduce
-        dialog.window?.setLayout(widthShow, ViewGroup.LayoutParams.WRAP_CONTENT)
         dialog.setCanceledOnTouchOutside(false)
         dialog.show()
     }
 
-    fun showUpdateTask(myTask: MyTaskModel, adapterOnClickListener: AdapterOnClickListener){
+    fun showUpdateTask(activity: Activity, myTask: MyTaskModel, adapterOnClickListener: AdapterOnClickListener){
         val dialog = Dialog(activity)
         val popUpBinding: PopupUpdateTaskBinding = DataBindingUtil.inflate(LayoutInflater.from(activity), R.layout.popup_update_task, null, false)
         popUpBinding.popUpUpdateTask = PopUpUpdateTaskViewModel(dialog, myTask, taskDatabase, this, adapterOnClickListener)
@@ -63,7 +61,7 @@ class MainViewModel(private val activity: Activity) {
     }
 
     fun deleteTask(myTask: MyTaskModel){
-        val myTaskRoom = DatabaseAsyncGetTask(taskDatabase, myTask.idTask!!).execute().get()
+        val myTaskRoom = DatabaseAsyncGetTask(taskDatabase, myTask.idTask).execute().get()
         DatabaseAsyncDelete(taskDatabase, myTaskRoom).execute()
     }
 

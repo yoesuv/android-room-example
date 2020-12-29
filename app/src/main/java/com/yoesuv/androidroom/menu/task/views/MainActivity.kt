@@ -4,6 +4,7 @@ import androidx.lifecycle.Observer
 import androidx.databinding.DataBindingUtil
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.lifecycle.ViewModelProvider
 import com.yoesuv.androidroom.R
 import com.yoesuv.androidroom.databinding.ActivityMainBinding
 import com.yoesuv.androidroom.menu.task.AdapterOnClickListener
@@ -22,7 +23,7 @@ class MainActivity : AppCompatActivity(), AdapterOnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        viewModel = MainViewModel(this)
+        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
         setupBinding()
         setupToolbar()
@@ -66,7 +67,7 @@ class MainActivity : AppCompatActivity(), AdapterOnClickListener {
     }
 
     override fun onItemAdapterClickedEdit(myTask: MyTaskModel) {
-        viewModel.showUpdateTask(myTask, this)
+        viewModel.showUpdateTask(this, myTask, this)
     }
 
     override fun onItemAdapterClickedDelete(myTask: MyTaskModel, position: Int) {
