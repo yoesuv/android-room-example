@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:swipe="http://schemas.android.com/apk/res-auto">
+    xmlns:swipe="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
         <variable
@@ -67,7 +68,8 @@
                 android:layout_marginRight="@dimen/item_task_margin"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:text="@{itemTask.title}"/>
+                android:text="@{itemTask.title}"
+                tools:text="@tools:sample/lorem"/>
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/textViewTaskContent"
@@ -76,7 +78,8 @@
                 android:layout_marginLeft="@dimen/item_task_margin"
                 android:layout_marginRight="@dimen/item_task_margin"
                 android:layout_marginBottom="@dimen/item_task_margin"
-                android:text="@{itemTask.content}"/>
+                android:text="@{itemTask.content}"
+                tools:text="@tools:sample/lorem"/>
 
         </LinearLayout>
 
