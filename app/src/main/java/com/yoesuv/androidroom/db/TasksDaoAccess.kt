@@ -7,7 +7,7 @@ import com.yoesuv.androidroom.menu.task.models.MyTaskModel
 interface TasksDaoAccess {
 
     @Insert
-    fun insertTask(myTaskModel: MyTaskModel)
+    suspend fun insertTask(myTaskModel: MyTaskModel)
 
     @Query("SELECT * FROM my_tasks")
     suspend fun selectAll(): List<MyTaskModel>

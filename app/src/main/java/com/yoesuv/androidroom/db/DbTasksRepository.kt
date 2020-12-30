@@ -9,6 +9,13 @@ class DbTasksRepository(context: Context, private val scope: CoroutineScope) {
 
     private val db = TaskDatabase.getInstance(context)?.tasksDaoAccess()
 
+    fun insertTask(myTaskModel: MyTaskModel, onDone:() -> Unit) {
+        scope.launch {
+            db?.insertTask(myTaskModel)
+            onDone()
+        }
+    }
+
     fun selectAll(tasks:(List<MyTaskModel>?) -> Unit) {
         scope.launch {
             tasks(db?.selectAll())
