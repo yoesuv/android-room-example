@@ -33,7 +33,11 @@ class MainViewModel(application: Application): AndroidViewModel(application) {
 
     fun showUpdateTask(activity: Activity, myTask: MyTaskModel, adapterOnClickListener: AdapterOnClickListener){
         dialogInsertUpdateTask(activity, myTask) { title, content ->
-
+            myTask.titleTask = title
+            myTask.contentTask = content
+            dbTasks.updateTask(myTask) {
+                adapterOnClickListener.onUpdateCallback()
+            }
         }
     }
 

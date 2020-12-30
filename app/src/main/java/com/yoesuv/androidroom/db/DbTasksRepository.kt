@@ -22,6 +22,13 @@ class DbTasksRepository(context: Context, private val scope: CoroutineScope) {
         }
     }
 
+    fun updateTask(myTaskModel: MyTaskModel, onDone:() -> Unit) {
+        scope.launch {
+            db?.updateTask(myTaskModel)
+            onDone()
+        }
+    }
+
     fun deleteTask(idTask: Int, onDone: () -> Unit) {
         scope.launch {
             db?.deleteTaskById(idTask)

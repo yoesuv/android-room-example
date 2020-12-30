@@ -13,7 +13,7 @@ interface TasksDaoAccess {
     suspend fun selectAll(): List<MyTaskModel>
 
     @Update
-    fun updateTask(myTaskModel: MyTaskModel)
+    suspend fun updateTask(myTaskModel: MyTaskModel)
 
     @Query("DELETE FROM my_tasks WHERE idTask=:idTask")
     suspend fun deleteTaskById(idTask: Int)
