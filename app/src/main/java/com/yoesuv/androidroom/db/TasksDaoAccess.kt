@@ -12,14 +12,11 @@ interface TasksDaoAccess {
     @Query("SELECT * FROM my_tasks")
     suspend fun selectAll(): List<MyTaskModel>
 
-    @Query("SELECT * FROM my_tasks WHERE idTask=:idTask")
-    fun getTask(idTask: Int): MyTaskModel
-
     @Update
     fun updateTask(myTaskModel: MyTaskModel)
 
-    @Delete
-    fun delete(myTaskModel: MyTaskModel)
+    @Query("DELETE FROM my_tasks WHERE idTask=:idTask")
+    suspend fun deleteTaskById(idTask: Int)
 
     @Query("DELETE FROM my_tasks")
     fun deleteAll()
