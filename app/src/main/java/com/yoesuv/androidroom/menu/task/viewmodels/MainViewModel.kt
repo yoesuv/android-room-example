@@ -7,8 +7,10 @@ import androidx.room.Room
 import android.os.AsyncTask
 import android.view.View
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.viewModelScope
 import com.yoesuv.androidroom.db.TaskDatabase
 import com.yoesuv.androidroom.data.AppConstant
+import com.yoesuv.androidroom.db.DbTasksRepository
 import com.yoesuv.androidroom.menu.task.AdapterOnClickListener
 import com.yoesuv.androidroom.menu.task.models.MyTaskModel
 import com.yoesuv.androidroom.utils.dialogInsertUpdateTask
@@ -16,16 +18,14 @@ import com.yoesuv.androidroom.utils.dialogInsertUpdateTask
 class MainViewModel(application: Application): AndroidViewModel(application) {
 
     private var taskDatabase: TaskDatabase = Room.databaseBuilder(application.applicationContext, TaskDatabase::class.java, AppConstant.DATABASE_NAME).build()
+    private val dbTasks =DbTasksRepository(application.applicationContext, viewModelScope)
 
-    var listTask: MutableLiveData<MutableList<MyTaskModel>> = MutableLiveData()
+    var listTask: MutableLiveData<List<MyTaskModel>> = MutableLiveData()
 
     fun showAllTask(){
-        val listTaskRoom: List<MyTaskModel> = DatabaseAsyncSelectAll(taskDatabase).execute().get()
-        val lisTaskAll: MutableList<MyTaskModel> = mutableListOf()
-        for(i:Int in 0 until(listTaskRoom.size)){
-                lisTaskAll.add(MyTaskModel(listTaskRoom[i].idTask, listTaskRoom[i].titleTask, listTaskRoom[i].contentTask))
+        dbTasks.selectAll {
+            this.listTask.postValue(it)
         }
-        this.listTask.value = lisTaskAll
     }
 
     fun showInsertTask(view: View){
@@ -39,16 +39,6 @@ class MainViewModel(application: Application): AndroidViewModel(application) {
     fun deleteTask(myTask: MyTaskModel){
         val myTaskRoom = DatabaseAsyncGetTask(taskDatabase, myTask.idTask).execute().get()
         DatabaseAsyncDelete(taskDatabase, myTaskRoom).execute()
-    }
-
-    /**
-     * select all from data task
-     */
-    class DatabaseAsyncSelectAll(private val taskDatabase: TaskDatabase): AsyncTask<Void, Void, List<MyTaskModel>>(){
-
-        override fun doInBackground(vararg p0: Void?): List<MyTaskModel> {
-            return taskDatabase.tasksDaoAccess().selectAll()
-        }
     }
 
     /**

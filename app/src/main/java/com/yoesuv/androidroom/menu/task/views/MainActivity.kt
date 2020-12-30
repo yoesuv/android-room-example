@@ -44,7 +44,9 @@ class MainActivity : AppCompatActivity(), AdapterOnClickListener {
         binding.main = viewModel
 
         viewModel.listTask.observe(this, Observer {
-            onListDataChange(it!!)
+            it?.let {
+                onListDataChange(it.toMutableList())
+            }
         })
     }
 

@@ -41,8 +41,9 @@ dependencies {
     implementation 'com.google.android.material:material:1.2.1'
     implementation "androidx.lifecycle:lifecycle-extensions:$lifeCycleVersion"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifeCycleVersion"
-    implementation 'androidx.room:room-runtime:2.0.0'
-    kapt 'androidx.room:room-compiler:2.0.0'
+    implementation "androidx.room:room-runtime:$roomVersion"
+    kapt "androidx.room:room-compiler:$roomVersion"
+    implementation "androidx.room:room-ktx:$roomVersion"
     implementation "com.daimajia.swipelayout:library:$swipeLayoutLibrary"
     implementation "com.afollestad.material-dialogs:core:$materialDialogVersion"
 }

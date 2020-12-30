@@ -10,7 +10,7 @@ interface TasksDaoAccess {
     fun insertTask(myTaskModel: MyTaskModel)
 
     @Query("SELECT * FROM my_tasks")
-    fun selectAll(): List<MyTaskModel>
+    suspend fun selectAll(): List<MyTaskModel>
 
     @Query("SELECT * FROM my_tasks WHERE idTask=:idTask")
     fun getTask(idTask: Int): MyTaskModel
