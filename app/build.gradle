@@ -4,42 +4,46 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 30
     defaultConfig {
         applicationId "com.yoesuv.androidroom"
         minSdkVersion 16
-        targetSdkVersion 27
-        versionCode 1
-        versionName "1.0.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        targetSdkVersion 30
+        versionCode 2
+        versionName "2.0.0"
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
         setProperty("archivesBaseName", applicationId+"-v"+versionCode+"("+versionName+")")
     }
     buildTypes {
-        release {
+        debug {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
     }
-    dataBinding{
-        enabled = true
+    buildFeatures {
+        dataBinding = true
     }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation "com.android.support:appcompat-v7:$project.supportLibraryVersion"
-    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
 
-    implementation "com.android.support:design:$project.supportLibraryVersion"
-    implementation "com.android.support:recyclerview-v7:$project.supportLibraryVersion"
-    implementation "android.arch.persistence.room:runtime:$project.roomVersion"
-    kapt "android.arch.persistence.room:compiler:$project.roomVersion"
-    implementation "android.arch.lifecycle:extensions:$project.archLifecycleVersion"
-    kapt "android.arch.lifecycle:compiler:$project.archLifecycleVersion"
-    implementation "com.android.support:support-v4:$project.supportLibraryVersion"
-    implementation "com.daimajia.swipelayout:library:$project.swipeLayoutLibrary"
+    implementation 'com.google.android.material:material:1.2.1'
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifeCycleVersion"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifeCycleVersion"
+    implementation "androidx.room:room-runtime:$roomVersion"
+    kapt "androidx.room:room-compiler:$roomVersion"
+    implementation "androidx.room:room-ktx:$roomVersion"
+    implementation "com.daimajia.swipelayout:library:$swipeLayoutLibrary"
+    implementation "com.afollestad.material-dialogs:core:$materialDialogVersion"
 }

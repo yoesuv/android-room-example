@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:swipe="http://schemas.android.com/apk/res-auto">
+    xmlns:swipe="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
         <variable
@@ -23,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent">
 
-            <android.support.v7.widget.AppCompatButton
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/buttonItemEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -36,7 +37,7 @@
                 android:onClick="@{itemTask::clickEdit}"
                 style="?attr/borderlessButtonStyle"/>
 
-            <android.support.v7.widget.AppCompatButton
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/buttonItemDelete"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -58,7 +59,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <android.support.v7.widget.AppCompatTextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/textViewTaskTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -67,16 +68,18 @@
                 android:layout_marginRight="@dimen/item_task_margin"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:text="@{itemTask.title}"/>
+                android:text="@{itemTask.title}"
+                tools:text="@tools:sample/lorem"/>
 
-            <android.support.v7.widget.AppCompatTextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/textViewTaskContent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/item_task_margin"
                 android:layout_marginRight="@dimen/item_task_margin"
                 android:layout_marginBottom="@dimen/item_task_margin"
-                android:text="@{itemTask.content}"/>
+                android:text="@{itemTask.content}"
+                tools:text="@tools:sample/lorem"/>
 
         </LinearLayout>
 

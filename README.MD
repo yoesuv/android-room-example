@@ -1,14 +1,13 @@
-# Android Room Training #
+# Android Room Example #
 
 Basic CRUD App
+[Download APK](https://drive.google.com/file/d/13YRYQ1NazhCYLDvRYq0P4U1xYSp_dE_b/view?usp=sharing)
 
-[Download APK](https://drive.google.com/file/d/1fQ7KH2uGdrIJdIsFNpJ3CzrbP-28LtzJ/view)
-
-| Screenshot | Screenshot | Screenshot |
+### Screenshot ###
+| ![](https://i.imgur.com/c9zOn9Y.png) | ![](https://i.imgur.com/3TdwYad.png) | ![](https://i.imgur.com/YVPPa7d.png) |
 | :--: | :--: | :--: |
-| ![](https://lh3.googleusercontent.com/0Jo4J9MJc51yr11t9TylMD7ilGLAvw7msKW656iG2tB0WmfI-snr8i8STmdO57nayJEL3qTOIWPgMay8BCDI7YrLNYKc7DncliAnLM4qZemb53dKXdlb8AeLygM72ycD8Bd5WvDFBEzMDP_bt9zfE7yYhQA7nK11qu54SFpyZ9OTTKzfnp2qIkVmJxekQ2HcP5oDqc4R3rXA_T535a89hoJNtw4KmTpJ3Mc1-csXAbW-dEQiT0cPxphrUYoMozB30smq-PhQkqhhB7vcL3Hf_TueRLHeHwcIwoeuA2YpFnbtxmtFo8WdaA6e2am1e5smD8AyT0tRKlOj47zfoib4vf5ckF9D0aZslWGbMx--C4lMEBC48MTE4L3Avy-j0-6T8eojvxLNZOkjINhzUfubzvQj4PmfDMoab9taicJ5hYFoysGKroIaCcya7vAZnuAgYULBsqhwsZmjsR0P8HzIoHfDLPQjQkJMLX28oTibPg54N1b27NA0Jyt24iV0mXBeG6po1Fr4kGzY_7nnv8lDRDvEliWq3wkz7zllnf4RsZZzPDDX2zFJ0OglDvpiYArXLIN2swk8O_XyWOXza13CNHnMmzhPGai18wNziNw=w361-h641-no) | ![](https://lh3.googleusercontent.com/Cq8h5GUSC5nYyWvH9_y1BzjZtN_cYnR5yRu8UET4Xt8CvJy21jFpC4LR5_NzIn6dY-uQZNscHNVjzi0lBrneTULjVZbiU5caYokhEOLPdPib1BUOdCYFIpxlii4XiQwvvdaJGAf1k0UssxWz-pIvLAmH5pytFwvx3s6voRdv_u1wLCFSgtDV-abkRAJT2y8j0BF1Q7ygILcMVtA6eNdFJ0eUJT0Kv-X4f-uBUiCmWeBZ8eK14DMR1vGZ3DMPfsYoCnUBAMzy_PGHk9bFuYAOcm7A4xjXhPqgH9sFl1Ut8b28wQj8Lf3_4LJ36BkQNRkJqM5EDKS5ZBHzyfZaMqZgIqbq1Ee2s_JI_Et-8Hd0AJikL_gAc32oHZUkFkCurZxixx2QXb1typvw9Ksu0wp0tplPf8COAufR8U4gqP1BkSdaNh71G89xmS5mBD-mY2CeFKNukJwRwhul2yP_i0QoVx77aQa_Jj_UOdnqvVy2z1RfnRiedlze63ObpLK8ugfAZ1rilr3x_mWwiII94evyLeErAgrH3ys60mR8ljpHkNhUD2PWBYpTuKaLzZGBltsb29IH46BlTAzazS6fT6mEV-kJ-K8kheMy3SsjvAk=w361-h641-no) | ![](https://lh3.googleusercontent.com/j4KOhboG5qPA3cUO7k61MfM83w19f4oeePU914682_JNCkcN2yHdYhmL-I8z4S6roaKgZW8P-HcoRNtOS6RxKykydD0hutLsYn2U5CWJfOv-GjapmfeMmQ3uCfyfjufKM4EYi5wdzuHNNXPzTMBM7XvvuUU49wzWla2RqRtAvTqy8Y3id-7X8RvHeLqaM-9JyXTgkFUEtsejbPuSCfBeyYPCVFvUoKt_fZm1hUXjLgCk8ZzQ5Em5YWry-Bht4J5dmmfLMJxpkMRz6_aRPyszWrafQp19hAmkhJS7ZhvpUL9aEGA1j7DdW5mE6QygNYhOgwqSBlrUNPkNPc-RHGxrCZDbityoBmCB3k-V916fszLZcto4ESe0DyPFA5eRpfFl_ahdTxbybOJ6rHO2oO06pFgV3t5IFczgPFlPQLmW_pOdxBMDyhN06KUmZox66Z_jlGLmzHVIZ1E7j5-_CrWD3hxuMnpvyLEdrJrhaSNDxmYet88-jsCI6XRVtL3Y2hN_K3shSLfDgy6gNE6l1slV8jiaWS5Ia9Aj8fkA897kyW1oYOxehd5T-FFq6WMpemiwvxMI5hvBq-jmfY0IatVKX7cV2NjbaBsSkMKX8jU=w361-h641-no) |
-
 
 **List Libraries used In This Project**
 
 * [Android Swipe Layout](https://github.com/daimajia/AndroidSwipeLayout)
+* [Material Dialogs](https://github.com/afollestad/material-dialogs)
