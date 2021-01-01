@@ -71,7 +71,10 @@ class MainActivity : AppCompatActivity(), AdapterOnClickListener {
     }
 
     override fun onItemAdapterClickedDelete(myTask: MyTaskModel, position: Int) {
-        viewModel.deleteTask(myTask)
+        viewModel.deleteTask(myTask, position, this)
+    }
+
+    override fun onItemDeleteCallback(position: Int) {
         adapter.removeItem(binding.recyclerViewMain, position)
     }
 

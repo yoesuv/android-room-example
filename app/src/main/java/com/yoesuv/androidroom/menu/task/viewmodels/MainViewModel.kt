@@ -41,9 +41,9 @@ class MainViewModel(application: Application): AndroidViewModel(application) {
         }
     }
 
-    fun deleteTask(myTask: MyTaskModel){
+    fun deleteTask(myTask: MyTaskModel, position: Int, adapterOnClickListener:AdapterOnClickListener){
         dbTasks.deleteTask(myTask.idTask) {
-
+            adapterOnClickListener.onItemDeleteCallback(position)
         }
     }
 
