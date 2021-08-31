@@ -4,16 +4,18 @@ import androidx.lifecycle.Observer
 import androidx.databinding.DataBindingUtil
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
+import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.yoesuv.androidroom.R
 import com.yoesuv.androidroom.databinding.ActivityMainBinding
-import com.yoesuv.androidroom.menu.task.AdapterOnClickListener
+import com.yoesuv.androidroom.databinding.PopupMenuBinding
 import com.yoesuv.androidroom.menu.task.adapters.ListTaskAdapter
 import com.yoesuv.androidroom.menu.task.models.MyTaskModel
 import com.yoesuv.androidroom.menu.task.viewmodels.MainViewModel
 
-class MainActivity : AppCompatActivity(), AdapterOnClickListener {
+class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: MainViewModel
@@ -52,7 +54,9 @@ class MainActivity : AppCompatActivity(), AdapterOnClickListener {
 
     private fun setupRecycler(){
         binding.recyclerViewMain.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
-        adapter = ListTaskAdapter(this, listTask, this)
+        adapter = ListTaskAdapter(listTask) {
+            showDialogMenu()
+        }
         binding.recyclerViewMain.adapter = adapter
     }
 
@@ -66,19 +70,12 @@ class MainActivity : AppCompatActivity(), AdapterOnClickListener {
         }
     }
 
-    override fun onItemAdapterClickedEdit(myTask: MyTaskModel) {
-        viewModel.showUpdateTask(this, myTask, this)
+    private fun showDialogMenu() {
+        val inflater = LayoutInflater.from(this)
+        val binding = PopupMenuBinding.inflate(inflater)
+        val dialog = AlertDialog.Builder(this).create()
+        dialog.setView(binding.root)
+        dialog.show()
     }
 
-    override fun onItemAdapterClickedDelete(myTask: MyTaskModel, position: Int) {
-        viewModel.deleteTask(myTask, position, this)
-    }
-
-    override fun onItemDeleteCallback(position: Int) {
-        adapter.removeItem(binding.recyclerViewMain, position)
-    }
-
-    override fun onUpdateCallback() {
-        adapter.updateItem(binding.recyclerViewMain)
-    }
 }
