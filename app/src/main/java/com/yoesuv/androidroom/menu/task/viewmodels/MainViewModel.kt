@@ -11,7 +11,7 @@ import com.yoesuv.androidroom.utils.dialogInsertUpdateTask
 
 class MainViewModel(application: Application): AndroidViewModel(application) {
 
-    private val dbTasks =DbTasksRepository(application.applicationContext, viewModelScope)
+    private val dbTasks = DbTasksRepository(application.applicationContext, viewModelScope)
 
     var listTask: MutableLiveData<List<MyTaskModel>> = MutableLiveData()
 
@@ -24,6 +24,22 @@ class MainViewModel(application: Application): AndroidViewModel(application) {
     fun showInsertTask(view: View){
         dialogInsertUpdateTask(view.context, null) { title, content ->
             dbTasks.insertTask(MyTaskModel(titleTask = title, contentTask = content)) {
+                showAllTask()
+            }
+        }
+    }
+
+    fun updateTask(myTaskModel: MyTaskModel?) {
+        myTaskModel?.let {
+            dbTasks.updateTask(it) {
+                showAllTask()
+            }
+        }
+    }
+
+    fun deleteTask(myTaskModel: MyTaskModel?) {
+        myTaskModel?.idTask?.let {
+            dbTasks.deleteTask(it) {
                 showAllTask()
             }
         }

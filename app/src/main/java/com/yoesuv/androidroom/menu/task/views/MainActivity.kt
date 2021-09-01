@@ -1,19 +1,17 @@
 package com.yoesuv.androidroom.menu.task.views
 
-import androidx.lifecycle.Observer
 import androidx.databinding.DataBindingUtil
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
-import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.yoesuv.androidroom.R
 import com.yoesuv.androidroom.databinding.ActivityMainBinding
-import com.yoesuv.androidroom.databinding.PopupMenuBinding
 import com.yoesuv.androidroom.menu.task.adapters.ListTaskAdapter
 import com.yoesuv.androidroom.menu.task.models.MyTaskModel
 import com.yoesuv.androidroom.menu.task.viewmodels.MainViewModel
+import com.yoesuv.androidroom.utils.dialogInsertUpdateTask
+import com.yoesuv.androidroom.utils.dialogMenu
 
 class MainActivity : AppCompatActivity() {
 
@@ -25,8 +23,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
         setupBinding()
         setupToolbar()
@@ -43,9 +39,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupBinding(){
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         binding.main = viewModel
 
-        viewModel.listTask.observe(this, Observer {
+        viewModel.listTask.observe(this, {
             it?.let {
                 onListDataChange(it.toMutableList())
             }
@@ -54,8 +51,12 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupRecycler(){
         binding.recyclerViewMain.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
-        adapter = ListTaskAdapter(listTask) {
-            showDialogMenu()
+        adapter = ListTaskAdapter(listTask) { task ->
+            dialogMenu(this, {
+                showDialogEdit(task)
+            },{
+                viewModel.deleteTask(task)
+            })
         }
         binding.recyclerViewMain.adapter = adapter
     }
@@ -70,12 +71,12 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun showDialogMenu() {
-        val inflater = LayoutInflater.from(this)
-        val binding = PopupMenuBinding.inflate(inflater)
-        val dialog = AlertDialog.Builder(this).create()
-        dialog.setView(binding.root)
-        dialog.show()
+    private fun showDialogEdit(data: MyTaskModel?) {
+        dialogInsertUpdateTask(this, data) { title, content ->
+            data?.titleTask = title
+            data?.contentTask = content
+            viewModel.updateTask(data)
+        }
     }
 
 }
