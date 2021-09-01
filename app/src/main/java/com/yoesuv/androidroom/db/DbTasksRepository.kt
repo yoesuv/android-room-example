@@ -2,38 +2,25 @@ package com.yoesuv.androidroom.db
 
 import android.content.Context
 import com.yoesuv.androidroom.menu.task.models.MyTaskModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.launch
 
-class DbTasksRepository(context: Context, private val scope: CoroutineScope) {
+class DbTasksRepository(context: Context) {
 
     private val db = TaskDatabase.getInstance(context)?.tasksDaoAccess()
 
-    fun insertTask(myTaskModel: MyTaskModel, onDone:() -> Unit) {
-        scope.launch {
-            db?.insertTask(myTaskModel)
-            onDone()
-        }
+    suspend fun insertTask(myTaskModel: MyTaskModel) {
+        db?.insertTask(myTaskModel)
     }
 
-    fun selectAll(tasks:(List<MyTaskModel>?) -> Unit) {
-        scope.launch {
-            tasks(db?.selectAll())
-        }
+    suspend fun selectAll(): List<MyTaskModel>? {
+        return db?.selectAll()
     }
 
-    fun updateTask(myTaskModel: MyTaskModel, onDone:() -> Unit) {
-        scope.launch {
-            db?.updateTask(myTaskModel)
-            onDone()
-        }
+    suspend fun updateTask(myTaskModel: MyTaskModel) {
+        db?.updateTask(myTaskModel)
     }
 
-    fun deleteTask(idTask: Int, onDone: () -> Unit) {
-        scope.launch {
-            db?.deleteTaskById(idTask)
-            onDone()
-        }
+    suspend fun deleteTask(idTask: Int) {
+        db?.deleteTaskById(idTask)
     }
 
 

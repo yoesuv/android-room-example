@@ -43,25 +43,23 @@ class MainActivity : AppCompatActivity() {
         binding.main = viewModel
 
         viewModel.listTask.observe(this, {
-            it?.let {
-                onListDataChange(it.toMutableList())
-            }
+            onListDataChange(it)
         })
     }
 
     private fun setupRecycler(){
         binding.recyclerViewMain.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
-        adapter = ListTaskAdapter(listTask) { task ->
+        adapter = ListTaskAdapter(listTask) { position, task ->
             dialogMenu(this, {
-                showDialogEdit(task)
+                showDialogEdit(task, position)
             },{
-                viewModel.deleteTask(task)
+                removeTask(task, position)
             })
         }
         binding.recyclerViewMain.adapter = adapter
     }
 
-    private fun onListDataChange(listTask: MutableList<MyTaskModel>){
+    private fun onListDataChange(listTask: List<MyTaskModel>){
         if(listTask.isNotEmpty()) {
             this.listTask.clear()
             for (i: Int in 0 until (listTask.size)) {
@@ -71,12 +69,20 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun showDialogEdit(data: MyTaskModel?) {
+    private fun showDialogEdit(data: MyTaskModel?, position: Int) {
         dialogInsertUpdateTask(this, data) { title, content ->
             data?.titleTask = title
             data?.contentTask = content
             viewModel.updateTask(data)
+            adapter.notifyItemChanged(position)
         }
+    }
+
+    private fun removeTask(task: MyTaskModel?, position: Int) {
+        viewModel.deleteTask(task)
+        listTask.removeAt(position)
+        adapter.notifyItemRemoved(position)
+        adapter.notifyItemRangeChanged(position, listTask.size)
     }
 
 }
