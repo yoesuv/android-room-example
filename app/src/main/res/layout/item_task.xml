@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:swipe="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <variable
@@ -9,80 +9,55 @@
             type="com.yoesuv.androidroom.menu.task.viewmodels.ItemTaskViewModel"/>
     </data>
 
-    <com.daimajia.swipe.SwipeLayout
-        android:id="@+id/swipeLayoutItemTask"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        swipe:leftEdgeSwipeOffset="0dp"
-        swipe:rightEdgeSwipeOffset="0dp">
-
-        <!-- surfaceview -->
-        <RelativeLayout
-            android:id="@+id/bottomWrapper"
-            android:orientation="vertical"
-            android:background="@color/grey_100"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent">
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/buttonItemEdit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/button_task_edit"
-                android:drawableLeft="@drawable/ic_edit"
-                android:drawableStart="@drawable/ic_edit"
-                android:layout_centerVertical="true"
-                android:layout_toLeftOf="@+id/buttonItemDelete"
-                android:layout_toStartOf="@+id/buttonItemDelete"
-                android:onClick="@{itemTask::clickEdit}"
-                style="?attr/borderlessButtonStyle"/>
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/buttonItemDelete"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/button_task_delete"
-                android:drawableLeft="@drawable/ic_waste"
-                android:drawableStart="@drawable/ic_waste"
-                android:layout_centerVertical="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:onClick="@{itemTask::clickDelete}"
-                style="?attr/borderlessButtonStyle"/>
-
-        </RelativeLayout>
+        android:layout_height="wrap_content">
 
         <LinearLayout
-            android:background="@color/grey_50"
             android:id="@+id/itemContent"
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/item_task_margin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/ivMenuMore"
+            android:orientation="vertical">
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/textViewTaskTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/item_task_margin"
-                android:layout_marginLeft="@dimen/item_task_margin"
-                android:layout_marginRight="@dimen/item_task_margin"
+                android:text="@{itemTask.title}"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:text="@{itemTask.title}"
-                tools:text="@tools:sample/lorem"/>
+                android:textColor="@drawable/selector_black_pink"
+                android:maxLines="1"
+                android:ellipsize="end"
+                tools:text="@tools:sample/lorem" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/textViewTaskContent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/item_task_margin"
-                android:layout_marginRight="@dimen/item_task_margin"
-                android:layout_marginBottom="@dimen/item_task_margin"
                 android:text="@{itemTask.content}"
-                tools:text="@tools:sample/lorem"/>
+                android:textColor="@drawable/selector_black_pink"
+                android:maxLines="1"
+                android:ellipsize="end"
+                tools:text="@tools:sample/lorem" />
 
         </LinearLayout>
 
-    </com.daimajia.swipe.SwipeLayout>
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivMenuMore"
+            android:layout_width="@dimen/item_task_menu_size"
+            android:layout_height="@dimen/item_task_menu_size"
+            app:tint="@drawable/selector_black_pink"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/ic_menu_more_vertical"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

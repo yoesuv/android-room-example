@@ -1,49 +1,49 @@
 package com.yoesuv.androidroom.menu.task.viewmodels
 
-import android.app.Activity
 import android.app.Application
 import androidx.lifecycle.MutableLiveData
 import android.view.View
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.yoesuv.androidroom.db.DbTasksRepository
-import com.yoesuv.androidroom.menu.task.AdapterOnClickListener
 import com.yoesuv.androidroom.menu.task.models.MyTaskModel
 import com.yoesuv.androidroom.utils.dialogInsertUpdateTask
+import kotlinx.coroutines.launch
 
 class MainViewModel(application: Application): AndroidViewModel(application) {
 
-    private val dbTasks =DbTasksRepository(application.applicationContext, viewModelScope)
+    private val dbTasks = DbTasksRepository(application.applicationContext)
 
     var listTask: MutableLiveData<List<MyTaskModel>> = MutableLiveData()
 
     fun showAllTask(){
-        dbTasks.selectAll {
-            this.listTask.postValue(it)
+        viewModelScope.launch {
+            listTask.postValue(dbTasks.selectAll())
         }
     }
 
     fun showInsertTask(view: View){
         dialogInsertUpdateTask(view.context, null) { title, content ->
-            dbTasks.insertTask(MyTaskModel(titleTask = title, contentTask = content)) {
-                showAllTask()
+            viewModelScope.launch {
+                dbTasks.insertTask(MyTaskModel(titleTask = title, contentTask = content))
+                listTask.postValue(dbTasks.selectAll())
             }
         }
     }
 
-    fun showUpdateTask(activity: Activity, myTask: MyTaskModel, adapterOnClickListener: AdapterOnClickListener){
-        dialogInsertUpdateTask(activity, myTask) { title, content ->
-            myTask.titleTask = title
-            myTask.contentTask = content
-            dbTasks.updateTask(myTask) {
-                adapterOnClickListener.onUpdateCallback()
+    fun updateTask(myTaskModel: MyTaskModel?) {
+        viewModelScope.launch {
+            myTaskModel?.let {
+                dbTasks.updateTask(it)
             }
         }
     }
 
-    fun deleteTask(myTask: MyTaskModel, position: Int, adapterOnClickListener:AdapterOnClickListener){
-        dbTasks.deleteTask(myTask.idTask) {
-            adapterOnClickListener.onItemDeleteCallback(position)
+    fun deleteTask(myTaskModel: MyTaskModel?) {
+        viewModelScope.launch {
+            myTaskModel?.idTask?.let {
+                dbTasks.deleteTask(it)
+            }
         }
     }
 
