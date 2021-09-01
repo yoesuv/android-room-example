@@ -9,25 +9,27 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvEditTask"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/item_task_margin"
             android:gravity="center_vertical"
             android:text="@string/button_task_edit"
             android:drawablePadding="@dimen/item_task_margin"
             android:drawableLeft="@drawable/ic_edit"
-            android:drawableStart="@drawable/ic_edit"/>
+            android:drawableStart="@drawable/ic_edit"
+            android:theme="@style/textPopUp"/>
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvDeleteTask"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/item_task_margin"
             android:gravity="center_vertical"
             android:text="@string/button_task_delete"
             android:drawablePadding="@dimen/item_task_margin"
             android:drawableLeft="@drawable/ic_delete_sign"
-            android:drawableStart="@drawable/ic_delete_sign"/>
+            android:drawableStart="@drawable/ic_delete_sign"
+            android:theme="@style/textPopUp"/>
 
     </LinearLayout>
 

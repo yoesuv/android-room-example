@@ -9,109 +9,102 @@
             type="com.yoesuv.androidroom.menu.task.viewmodels.PopupInsertUpdateTaskViewModel"/>
     </data>
 
-    <ScrollView
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <LinearLayout
-            android:orientation="vertical"
+        <com.google.android.material.textview.MaterialTextView
+            android:background="@color/pink_500"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:gravity="center"
+            android:text="@{popup.popupTitle}"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:textColor="@android:color/white"
+            tools:text="@string/insert_new_task"/>
+
+        <!-- input task title -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/item_task_margin"
+            app:error="@{popup.titleError}">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/editTextTaskTitle"
+                android:background="@android:color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_task_title"
+                android:inputType="text"
+                android:imeOptions="actionDone"
+                android:text="@={popup.title}"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- input task content -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/item_task_margin"
+            app:error="@{popup.contentError}">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/editTextTaskContent"
+                android:background="@android:color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_task_content"
+                android:inputType="textMultiLine"
+                android:imeOptions="actionDone"
+                android:text="@={popup.content}"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <com.google.android.material.textview.MaterialTextView
-                android:background="@color/pink_500"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:gravity="center"
-                android:text="@{popup.popupTitle}"
-                android:textStyle="bold"
-                android:textSize="18sp"
-                android:textColor="@android:color/white"
-                tools:text="@string/insert_new_task"/>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/buttonCancel"
+                style="?attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/guidelineCenter"
+                app:layout_constraintTop_toTopOf="parent"
+                android:drawableStart="@drawable/ic_delete_sign"
+                android:drawableLeft="@drawable/ic_delete_sign"
+                android:text="@android:string/cancel"
+                android:textColor="@drawable/selector_pink_material"/>
 
-            <!-- input task title -->
-            <com.google.android.material.textfield.TextInputLayout
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/buttonApply"
+                style="?attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@+id/guidelineCenter"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:drawableStart="@drawable/ic_save_as"
+                android:drawableLeft="@drawable/ic_save_as"
+                android:onClick="@{popup::clickApply}"
+                android:text="@{popup.buttonAction}"
+                android:textColor="@drawable/selector_pink_material"
+                tools:text="@string/button_new_task_save" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guidelineCenter"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/item_task_margin"
-                app:error="@{popup.titleError}">
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.5"/>
 
-                <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/editTextTaskTitle"
-                    android:background="@android:color/white"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/hint_task_title"
-                    android:inputType="text"
-                    android:imeOptions="actionDone"
-                    android:text="@={popup.title}"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <!-- input task content -->
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/item_task_margin"
-                app:error="@{popup.contentError}">
-
-                <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/editTextTaskContent"
-                    android:background="@android:color/white"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/hint_task_content"
-                    android:inputType="textMultiLine"
-                    android:imeOptions="actionDone"
-                    android:text="@={popup.content}"/>
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1">
-
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/buttonCancel"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:text="@android:string/cancel"
-                        android:drawableLeft="@drawable/ic_delete_sign"
-                        android:drawableStart="@drawable/ic_delete_sign"
-                        style="?attr/borderlessButtonStyle"/>
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1">
-
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/buttonApply"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:text="@{popup.buttonAction}"
-                        android:drawableLeft="@drawable/ic_save_as"
-                        android:drawableStart="@drawable/ic_save_as"
-                        android:onClick="@{popup::clickApply}"
-                        style="?attr/borderlessButtonStyle"
-                        tools:text="@string/button_new_task_save"/>
-
-                </RelativeLayout>
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-    </ScrollView>
+    </LinearLayout>
 
 </layout>

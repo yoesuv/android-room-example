@@ -31,6 +31,7 @@
                 android:text="@{itemTask.title}"
                 android:textSize="16sp"
                 android:textStyle="bold"
+                android:textColor="@drawable/selector_black_pink"
                 android:maxLines="1"
                 android:ellipsize="end"
                 tools:text="@tools:sample/lorem" />
@@ -40,6 +41,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@{itemTask.content}"
+                android:textColor="@drawable/selector_black_pink"
                 android:maxLines="1"
                 android:ellipsize="end"
                 tools:text="@tools:sample/lorem" />
@@ -50,6 +52,7 @@
             android:id="@+id/ivMenuMore"
             android:layout_width="@dimen/item_task_menu_size"
             android:layout_height="@dimen/item_task_menu_size"
+            app:tint="@drawable/selector_black_pink"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
