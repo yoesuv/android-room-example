@@ -3,6 +3,9 @@ package com.yoesuv.androidroom.menu.task.views
 import androidx.databinding.DataBindingUtil
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.yoesuv.androidroom.R
@@ -30,6 +33,18 @@ class MainActivity : AppCompatActivity() {
         viewModel.showAllTask()
 
         setupRecycler()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.actionDeleteAll) {
+            Log.d("result_debug", "Delete All Task")
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     private fun setupBinding(){
