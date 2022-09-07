@@ -32,19 +32,20 @@ class MainActivity : AppCompatActivity() {
         setupRecycler()
     }
 
+    private fun setupBinding(){
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        binding.lifecycleOwner = this
+        viewModel = ViewModelProvider(this)[MainViewModel::class.java]
+        binding.main = viewModel
+
+        viewModel.listTask.observe(this) {
+            onListDataChange(it)
+        }
+    }
+
     private fun setupToolbar(){
         setSupportActionBar(binding.toolbarMain)
         supportActionBar?.title = getString(R.string.my_task)
-    }
-
-    private fun setupBinding(){
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        binding.main = viewModel
-
-        viewModel.listTask.observe(this, {
-            onListDataChange(it)
-        })
     }
 
     private fun setupRecycler(){
@@ -65,7 +66,7 @@ class MainActivity : AppCompatActivity() {
             for (i: Int in 0 until (listTask.size)) {
                 this.listTask.add(listTask[i])
             }
-            adapter.notifyDataSetChanged()
+            adapter.notifyItemRangeChanged(0, listTask.size)
         }
     }
 

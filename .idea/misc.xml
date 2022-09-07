@@ -3,9 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../../layout/custom_preview.xml" value="0.1789568345323741" />
         <entry key="app/src/main/res/drawable/selector_black_pink.xml" value="0.3094017094017094" />
         <entry key="app/src/main/res/drawable/selector_pink_material.xml" value="0.3094017094017094" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.3609375" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.2365038560411311" />
         <entry key="app/src/main/res/layout/item_task.xml" value="0.296195652173913" />
         <entry key="app/src/main/res/layout/popup_insert_update_task.xml" value="0.3609375" />
         <entry key="app/src/main/res/layout/popup_menu.xml" value="0.2802056555269923" />

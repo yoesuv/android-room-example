@@ -47,7 +47,6 @@
             android:layout_gravity="end|bottom"
             app:srcCompat="@drawable/ic_plus"
             android:contentDescription="@string/app_name"
-            android:layout_marginRight="@dimen/fab_margin"
             android:layout_marginEnd="@dimen/fab_margin"
             android:layout_marginBottom="@dimen/fab_margin"
             android:onClick="@{main::showInsertTask}"
