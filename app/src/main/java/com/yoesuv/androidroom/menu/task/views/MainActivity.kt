@@ -3,7 +3,6 @@ package com.yoesuv.androidroom.menu.task.views
 import androidx.databinding.DataBindingUtil
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.lifecycle.ViewModelProvider
@@ -13,6 +12,7 @@ import com.yoesuv.androidroom.databinding.ActivityMainBinding
 import com.yoesuv.androidroom.menu.task.adapters.ListTaskAdapter
 import com.yoesuv.androidroom.menu.task.models.MyTaskModel
 import com.yoesuv.androidroom.menu.task.viewmodels.MainViewModel
+import com.yoesuv.androidroom.utils.dialogDeleteAll
 import com.yoesuv.androidroom.utils.dialogInsertUpdateTask
 import com.yoesuv.androidroom.utils.dialogMenu
 
@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.actionDeleteAll) {
-            Log.d("result_debug", "Delete All Task")
+            showDialogDeleteAll()
         }
         return super.onOptionsItemSelected(item)
     }
@@ -91,6 +91,12 @@ class MainActivity : AppCompatActivity() {
             data?.contentTask = content
             viewModel.updateTask(data)
             adapter.notifyItemChanged(position)
+        }
+    }
+
+    private fun showDialogDeleteAll() {
+        dialogDeleteAll(this) {
+
         }
     }
 
