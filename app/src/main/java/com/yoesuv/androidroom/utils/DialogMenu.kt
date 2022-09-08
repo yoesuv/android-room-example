@@ -1,23 +1,24 @@
 package com.yoesuv.androidroom.utils
 
+import android.app.AlertDialog
 import android.content.Context
 import android.view.LayoutInflater
-import com.afollestad.materialdialogs.MaterialDialog
-import com.afollestad.materialdialogs.customview.customView
 import com.yoesuv.androidroom.databinding.PopupMenuBinding
 
 fun dialogMenu(context: Context, onEdit:() -> Unit, onDelete:() -> Unit) {
-
+    var dialogMenu: AlertDialog? = null
+    val dialogBuilder = AlertDialog.Builder(context)
     val binding = PopupMenuBinding.inflate(LayoutInflater.from(context))
-    val dialog = MaterialDialog(context).customView(view = binding.root, noVerticalPadding = true, horizontalPadding = false)
     binding.tvEditTask.setOnClickListener {
-        dialog.dismiss()
+        dialogMenu?.dismiss()
         onEdit()
     }
     binding.tvDeleteTask.setOnClickListener {
-        dialog.dismiss()
+        dialogMenu?.dismiss()
         onDelete()
     }
-    dialog.show()
+    dialogBuilder.setView(binding.root)
+    dialogMenu = dialogBuilder.create()
+    dialogMenu.show()
 
 }
