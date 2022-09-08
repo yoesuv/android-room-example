@@ -96,7 +96,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun showDialogDeleteAll() {
         dialogDeleteAll(this) {
-
+            viewModel.deleteAll()
+            adapter.notifyItemRangeRemoved(0, listTask.size)
+            listTask.clear()
         }
     }
 

@@ -47,4 +47,10 @@ class MainViewModel(application: Application): AndroidViewModel(application) {
         }
     }
 
+    fun deleteAll() {
+        viewModelScope.launch {
+            dbTasks.deleteAllTask()
+        }
+    }
+
 }
