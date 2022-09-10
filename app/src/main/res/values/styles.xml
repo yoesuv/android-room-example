@@ -12,11 +12,4 @@
 
     </style>
 
-    <style name="textPopUp" parent="Widget.MaterialComponents.TextView">
-        <item name="android:textSize">14sp</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textColor">@drawable/selector_black_pink</item>
-    </style>
-
-
 </resources>

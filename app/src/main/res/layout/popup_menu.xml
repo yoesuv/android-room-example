@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
         android:orientation="vertical"
@@ -7,27 +8,27 @@
         android:layout_height="wrap_content"
         android:padding="@dimen/item_task_margin">
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvEditTask"
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnEditTask"
+            style="?attr/borderlessButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/item_task_margin"
             android:gravity="center_vertical"
             android:text="@string/button_task_edit"
-            android:drawablePadding="@dimen/item_task_margin"
-            android:drawableStart="@drawable/ic_edit"
-            android:theme="@style/textPopUp"/>
+            app:icon="@drawable/ic_edit"
+            app:iconTint="@null"
+            app:iconGravity="textStart"/>
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvDeleteTask"
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnDeleteTask"
+            style="?attr/borderlessButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/item_task_margin"
             android:gravity="center_vertical"
             android:text="@string/button_task_delete"
-            android:drawablePadding="@dimen/item_task_margin"
-            android:drawableStart="@drawable/ic_delete_sign"
-            android:theme="@style/textPopUp"/>
+            app:icon="@drawable/ic_waste"
+            app:iconTint="@null"
+            app:iconGravity="textStart"/>
 
     </LinearLayout>
 

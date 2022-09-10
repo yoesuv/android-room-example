@@ -8,11 +8,11 @@ import com.yoesuv.androidroom.databinding.PopupMenuBinding
 fun dialogMenu(context: Context, onEdit:() -> Unit, onDelete:() -> Unit) {
     var dialogMenu: AlertDialog? = null
     val binding = PopupMenuBinding.inflate(LayoutInflater.from(context))
-    binding.tvEditTask.setOnClickListener {
+    binding.btnEditTask.setOnClickListener {
         dialogMenu?.dismiss()
         onEdit()
     }
-    binding.tvDeleteTask.setOnClickListener {
+    binding.btnDeleteTask.setOnClickListener {
         dialogMenu?.dismiss()
         onDelete()
     }
