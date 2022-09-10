@@ -7,7 +7,6 @@ import com.yoesuv.androidroom.databinding.PopupDeleteAllBinding
 
 fun dialogDeleteAll(context: Context, onConfirm:() -> Unit) {
     var dialogDeleteAll: AlertDialog? = null
-    val dialogBuilder = AlertDialog.Builder(context)
     val binding = PopupDeleteAllBinding.inflate(LayoutInflater.from(context))
     binding.buttonCancel.setOnClickListener {
         dialogDeleteAll?.dismiss()
@@ -16,8 +15,9 @@ fun dialogDeleteAll(context: Context, onConfirm:() -> Unit) {
         dialogDeleteAll?.dismiss()
         onConfirm()
     }
-    dialogBuilder.setView(binding.root)
-    dialogDeleteAll = dialogBuilder.create()
+    dialogDeleteAll = AlertDialog.Builder(context)
+        .setView(binding.root)
+        .create()
     dialogDeleteAll?.setCancelable(false)
     dialogDeleteAll?.setCanceledOnTouchOutside(false)
     dialogDeleteAll?.show()
