@@ -10,25 +10,21 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnEditTask"
-            style="?attr/borderlessButtonStyle"
+            style="@style/AppButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:text="@string/button_task_edit"
-            app:icon="@drawable/ic_edit"
-            app:iconTint="@null"
-            app:iconGravity="textStart"/>
+            app:icon="@drawable/ic_edit" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnDeleteTask"
-            style="?attr/borderlessButtonStyle"
+            style="@style/AppButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:text="@string/button_task_delete"
-            app:icon="@drawable/ic_waste"
-            app:iconTint="@null"
-            app:iconGravity="textStart"/>
+            app:icon="@drawable/ic_waste" />
 
     </LinearLayout>
 

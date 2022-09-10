@@ -70,21 +70,18 @@
             <!-- style="?attr/borderlessButtonStyle" -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/buttonCancel"
+                style="@style/AppButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/guidelineCenter"
                 app:layout_constraintTop_toTopOf="parent"
                 android:text="@android:string/cancel"
-                android:textColor="@drawable/selector_pink_material"
-                app:icon="@drawable/ic_delete_sign"
-                app:iconTint="@null"
-                app:iconGravity="textStart"
-                style="?attr/borderlessButtonStyle"/>
+                app:icon="@drawable/ic_delete_sign" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/buttonApply"
-                style="?attr/borderlessButtonStyle"
+                style="@style/AppButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toEndOf="@+id/guidelineCenter"
@@ -93,10 +90,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:onClick="@{popup::clickApply}"
                 android:text="@{popup.buttonAction}"
-                android:textColor="@drawable/selector_pink_material"
                 app:icon="@drawable/ic_save_as"
-                app:iconTint="@null"
-                app:iconGravity="textStart"
                 tools:text="@string/button_new_task_save" />
 
             <androidx.constraintlayout.widget.Guideline

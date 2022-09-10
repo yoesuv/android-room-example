@@ -19,8 +19,6 @@ fun dialogMenu(context: Context, onEdit:() -> Unit, onDelete:() -> Unit) {
     dialogMenu = AlertDialog.Builder(context)
         .setView(binding.root)
         .create()
-    dialogMenu?.setCancelable(false)
-    dialogMenu?.setCanceledOnTouchOutside(false)
-    dialogMenu?.show()
+    dialogMenu.show()
 
 }
