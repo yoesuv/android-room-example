@@ -23,5 +23,8 @@ class DbTasksRepository(context: Context) {
         db?.deleteTaskById(idTask)
     }
 
+    suspend fun deleteAllTask() {
+        db?.deleteAll()
+    }
 
 }

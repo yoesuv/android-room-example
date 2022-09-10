@@ -19,6 +19,6 @@ interface TasksDaoAccess {
     suspend fun deleteTaskById(idTask: Int)
 
     @Query("DELETE FROM my_tasks")
-    fun deleteAll()
+    suspend fun deleteAll()
 
 }
