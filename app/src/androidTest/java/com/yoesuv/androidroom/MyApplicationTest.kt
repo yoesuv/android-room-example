@@ -40,7 +40,7 @@ class MyApplicationTest {
     }
 
     @Test
-    fun fullFlowTest() {
+    fun test1Insert() {
         val fab = onView(withId(R.id.fabMain))
         val etTitle = onView(withId(R.id.editTextTaskTitle))
         val etContent = onView(withId(R.id.editTextTaskContent))
@@ -74,5 +74,18 @@ class MyApplicationTest {
         etContent.perform(typeText("Coffee, Sugar"))
         etContent.perform(closeSoftKeyboard())
         onView(withId(R.id.buttonApply)).perform(click())
+        SystemClock.sleep(delay)
+    }
+
+    @Test
+    fun test2DeleteAll() {
+        onView(withId(R.id.actionDeleteAll)).perform(click())
+        onView(withText(context.getString(R.string.delete_all_message))).check(matches(isDisplayed()))
+        SystemClock.sleep(delay)
+        onView(withId(R.id.buttonOk)).perform(click())
+        SystemClock.sleep(delay)
+        onView(withId(R.id.recyclerViewMain)).check(matches(hasChildCount(0)))
+        SystemClock.sleep(delay)
+        SystemClock.sleep(delay)
     }
 }
