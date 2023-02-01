@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Android Room</string>
+
     <string name="my_task">My Task</string>
     <string name="delete_all">Delete All</string>
     <string name="delete_all_message">Delete All Tasks?</string>

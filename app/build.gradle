@@ -27,6 +27,16 @@ android {
     buildFeatures {
         dataBinding = true
     }
+    flavorDimensions "default"
+    productFlavors {
+        forTest {
+            resValue "string", "app_name", "Android Room TEST"
+            applicationIdSuffix ".test"
+        }
+        production {
+            resValue "string", "app_name", "Android Room"
+        }
+    }
 }
 
 dependencies {
