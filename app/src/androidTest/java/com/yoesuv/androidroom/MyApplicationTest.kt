@@ -5,11 +5,13 @@ import android.os.SystemClock
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
 import androidx.test.platform.app.InstrumentationRegistry
+import com.yoesuv.androidroom.menu.task.adapters.TaskViewHolder
 import com.yoesuv.androidroom.menu.task.views.MainActivity
 
 import org.junit.Test
@@ -17,7 +19,9 @@ import org.junit.runner.RunWith
 
 import org.junit.Assert.*
 import org.junit.Before
+import org.junit.FixMethodOrder
 import org.junit.Rule
+import org.junit.runners.MethodSorters
 
 /**
  * Instrumented test, which will execute on an Android device.
@@ -26,6 +30,7 @@ import org.junit.Rule
  */
 @RunWith(AndroidJUnit4::class)
 @LargeTest
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 class MyApplicationTest {
 
     private val delay = 1000L
@@ -78,7 +83,16 @@ class MyApplicationTest {
     }
 
     @Test
-    fun test2DeleteAll() {
+    fun test2Edit() {
+        val rv = onView(withId(R.id.recyclerViewMain))
+        rv.perform(RecyclerViewActions.scrollToPosition<TaskViewHolder>(0))
+        SystemClock.sleep(delay)
+        rv.perform(RecyclerViewActions.actionOnItemAtPosition<TaskViewHolder>(0, click()))
+        SystemClock.sleep(delay)
+    }
+
+    @Test
+    fun test3DeleteAll() {
         onView(withId(R.id.actionDeleteAll)).perform(click())
         onView(withText(context.getString(R.string.delete_all_message))).check(matches(isDisplayed()))
         SystemClock.sleep(delay)
