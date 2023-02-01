@@ -107,7 +107,35 @@ class MyApplicationTest {
     }
 
     @Test
-    fun test3DeleteAll() {
+    fun test3DeleteItem() {
+        val rv = onView(withId(R.id.recyclerViewMain))
+        rv.perform(RecyclerViewActions.scrollToPosition<TaskViewHolder>(0))
+        SystemClock.sleep(delay)
+        rv.perform(
+            RecyclerViewActions.actionOnItemAtPosition<TaskViewHolder>(
+                0,
+                MyViewAction.clickChildViewWithId(R.id.ivMenuMore)
+            )
+        )
+        SystemClock.sleep(delay)
+        onView(withId(R.id.btnDeleteTask)).perform(click())
+        SystemClock.sleep(delay)
+    }
+
+    @Test
+    fun test4DeleteAll() {
+        val fab = onView(withId(R.id.fabMain))
+        val etTitle = onView(withId(R.id.editTextTaskTitle))
+        val etContent = onView(withId(R.id.editTextTaskContent))
+
+        fab.perform(click())
+        etTitle.perform(typeText("Shop"))
+        etTitle.perform(closeSoftKeyboard())
+        etContent.perform(typeText("Coffee, Sugar"))
+        etContent.perform(closeSoftKeyboard())
+        onView(withId(R.id.buttonApply)).perform(click())
+        SystemClock.sleep(delay)
+
         onView(withId(R.id.actionDeleteAll)).perform(click())
         onView(withText(context.getString(R.string.delete_all_message))).check(matches(isDisplayed()))
         SystemClock.sleep(delay)
