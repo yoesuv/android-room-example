@@ -42,6 +42,8 @@ class MyApplicationTest {
     @Test
     fun fullFlowTest() {
         val fab = onView(withId(R.id.fabMain))
+        val etTitle = onView(withId(R.id.editTextTaskTitle))
+        val etContent = onView(withId(R.id.editTextTaskContent))
 
         fab.perform(click())
         onView(withText(context.getString(R.string.insert_new_task))).check(matches(isDisplayed()))
@@ -52,6 +54,25 @@ class MyApplicationTest {
         fab.perform(click())
         onView(withText(context.getString(R.string.insert_new_task))).check(matches(isDisplayed()))
         SystemClock.sleep(delay)
-        //onView(withId(R.id.buttonApply)).perform(click())
+        onView(withId(R.id.buttonApply)).perform(click())
+        onView(withText(context.getString(R.string.error_input_title_empty))).check(matches(isDisplayed()))
+        SystemClock.sleep(delay)
+        onView(withId(R.id.buttonCancel)).perform(click())
+
+        fab.perform(click())
+        etTitle.perform(typeText("Shop"))
+        etTitle.perform(closeSoftKeyboard())
+        onView(withId(R.id.buttonApply)).perform(click())
+        onView(withText(context.getString(R.string.error_input_content_empty))).check(matches(isDisplayed()))
+        SystemClock.sleep(delay)
+        onView(withId(R.id.buttonCancel)).perform(click())
+        SystemClock.sleep(delay)
+
+        fab.perform(click())
+        etTitle.perform(typeText("Shop"))
+        etTitle.perform(closeSoftKeyboard())
+        etContent.perform(typeText("Coffee, Sugar"))
+        etContent.perform(closeSoftKeyboard())
+        onView(withId(R.id.buttonApply)).perform(click())
     }
 }
