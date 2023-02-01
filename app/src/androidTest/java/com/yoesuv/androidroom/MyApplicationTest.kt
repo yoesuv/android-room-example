@@ -84,10 +84,25 @@ class MyApplicationTest {
 
     @Test
     fun test2Edit() {
+        val etContent = onView(withId(R.id.editTextTaskContent))
         val rv = onView(withId(R.id.recyclerViewMain))
         rv.perform(RecyclerViewActions.scrollToPosition<TaskViewHolder>(0))
         SystemClock.sleep(delay)
-        rv.perform(RecyclerViewActions.actionOnItemAtPosition<TaskViewHolder>(0, click()))
+        rv.perform(
+            RecyclerViewActions.actionOnItemAtPosition<TaskViewHolder>(
+                0,
+                MyViewAction.clickChildViewWithId(R.id.ivMenuMore)
+            )
+        )
+        SystemClock.sleep(delay)
+        onView(withId(R.id.btnEditTask)).perform(click())
+        onView(withText(context.getString(R.string.update_task))).check(matches(isDisplayed()))
+        etContent.perform(typeText(", Tea"))
+        etContent.perform(closeSoftKeyboard())
+        SystemClock.sleep(delay)
+        onView(withId(R.id.buttonApply)).perform(click())
+        SystemClock.sleep(delay)
+        onView(withText("Coffee, Sugar, Tea")).check(matches(isDisplayed()))
         SystemClock.sleep(delay)
     }
 
