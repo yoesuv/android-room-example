@@ -2,7 +2,7 @@
 ![Build Status](https://github.com/yoesuv/android-room-example/actions/workflows/github-actions.yml/badge.svg)
 
 Basic CRUD App
-[Download APK](https://www.dropbox.com/s/ixt09kdxwt69ugy)  
+[Download APK](https://www.dropbox.com/s/b56ip0tvgw1fse0)  
 to run UI Test, execute `./gradlew connectedForTestDebugAndroidTest`
 
 ### Screenshot ###
