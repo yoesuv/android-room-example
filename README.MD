@@ -1,4 +1,5 @@
 ## Android Room Example ##
+![Build Status](https://github.com/yoesuv/android-room-example/actions/workflows/github-actions.yml/badge.svg)
 
 Basic CRUD App
 [Download APK](https://www.dropbox.com/s/ixt09kdxwt69ugy)  
