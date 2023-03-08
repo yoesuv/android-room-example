@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - master
+  pull_request:
+    brances:
+      - master
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
