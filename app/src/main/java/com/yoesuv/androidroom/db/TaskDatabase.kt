@@ -1,11 +1,14 @@
 package com.yoesuv.androidroom.db
 
 import android.content.Context
+import android.util.Log
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.yoesuv.androidroom.data.AppConstant
 import com.yoesuv.androidroom.menu.task.models.MyTaskModel
+import com.yoesuv.androidroom.BuildConfig
+import java.util.concurrent.Executors
 
 @Database(entities = [MyTaskModel::class], version = 1, exportSchema = false)
 abstract class TaskDatabase : RoomDatabase() {
@@ -16,6 +19,7 @@ abstract class TaskDatabase : RoomDatabase() {
 
         @Volatile
         private var instance: TaskDatabase? = null
+
         @Synchronized
         fun getInstance(context: Context): TaskDatabase? {
             if (instance == null) {
@@ -24,10 +28,22 @@ abstract class TaskDatabase : RoomDatabase() {
             return instance
         }
 
-        private fun create(context: Context): TaskDatabase{
-            return Room.databaseBuilder(context, TaskDatabase::class.java, AppConstant.DATABASE_NAME)
+        private fun create(context: Context): TaskDatabase {
+            val dbBuilder =
+                Room.databaseBuilder(context, TaskDatabase::class.java, AppConstant.DATABASE_NAME)
                     .fallbackToDestructiveMigration()
-                    .build()
+            if (BuildConfig.DEBUG) {
+                dbBuilder.setQueryCallback(object : QueryCallback {
+                    override fun onQuery(sqlQuery: String, bindArgs: List<Any?>) {
+                        Log.d(
+                            "result_debug",
+                            "TaskDatabase # room query $sqlQuery ====> args $bindArgs\""
+                        )
+                    }
+                }, Executors.newSingleThreadExecutor())
+
+            }
+            return dbBuilder.build()
         }
     }
 
