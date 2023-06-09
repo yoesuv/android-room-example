@@ -27,12 +27,13 @@
 
         <!-- input task title -->
         <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/item_task_margin"
             app:error="@{popup.titleError}">
 
-            <androidx.appcompat.widget.AppCompatEditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextTaskTitle"
                 android:background="@android:color/white"
                 android:layout_width="match_parent"
@@ -46,12 +47,13 @@
 
         <!-- input task content -->
         <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/item_task_margin"
             app:error="@{popup.contentError}">
 
-            <androidx.appcompat.widget.AppCompatEditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextTaskContent"
                 android:background="@android:color/white"
                 android:layout_width="match_parent"
