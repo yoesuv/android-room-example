@@ -1,12 +1,16 @@
 package com.yoesuv.androidroom.utils
 
-import android.app.AlertDialog
+
 import android.content.Context
 import android.view.LayoutInflater
+import androidx.appcompat.app.AlertDialog
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.yoesuv.androidroom.R
 import com.yoesuv.androidroom.databinding.PopupMenuBinding
 
 fun dialogMenu(context: Context, onEdit:() -> Unit, onDelete:() -> Unit) {
     var dialogMenu: AlertDialog? = null
+    val dialogBuilder: MaterialAlertDialogBuilder?
     val binding = PopupMenuBinding.inflate(LayoutInflater.from(context))
     binding.btnEditTask.setOnClickListener {
         dialogMenu?.dismiss()
@@ -16,9 +20,8 @@ fun dialogMenu(context: Context, onEdit:() -> Unit, onDelete:() -> Unit) {
         dialogMenu?.dismiss()
         onDelete()
     }
-    dialogMenu = AlertDialog.Builder(context)
+    dialogBuilder = MaterialAlertDialogBuilder(context, R.style.DialogTheme)
         .setView(binding.root)
-        .create()
-    dialogMenu.show()
+    dialogMenu = dialogBuilder.show()
 
 }
