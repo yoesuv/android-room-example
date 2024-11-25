@@ -33,13 +33,11 @@ abstract class TaskDatabase : RoomDatabase() {
                 Room.databaseBuilder(context, TaskDatabase::class.java, AppConstant.DATABASE_NAME)
                     .fallbackToDestructiveMigration()
             if (BuildConfig.DEBUG) {
-                dbBuilder.setQueryCallback(object : QueryCallback {
-                    override fun onQuery(sqlQuery: String, bindArgs: List<Any?>) {
-                        Log.d(
-                            "result_debug",
-                            "TaskDatabase # room query $sqlQuery ====> args $bindArgs\""
-                        )
-                    }
+                dbBuilder.setQueryCallback({ sqlQuery, bindArgs ->
+                    Log.d(
+                        "result_debug",
+                        "TaskDatabase # room query $sqlQuery ====> args $bindArgs\""
+                    )
                 }, Executors.newSingleThreadExecutor())
 
             }
