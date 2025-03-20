@@ -2,6 +2,7 @@ package com.yoesuv.androidroom.menu.task.views
 
 import androidx.databinding.DataBindingUtil
 import androidx.appcompat.app.AppCompatActivity
+import androidx.activity.enableEdgeToEdge
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -12,6 +13,7 @@ import com.yoesuv.androidroom.databinding.ActivityMainBinding
 import com.yoesuv.androidroom.menu.task.adapters.ListTaskAdapter
 import com.yoesuv.androidroom.menu.task.models.MyTaskModel
 import com.yoesuv.androidroom.menu.task.viewmodels.MainViewModel
+import com.yoesuv.androidroom.utils.Utility
 import com.yoesuv.androidroom.utils.dialogDeleteAll
 import com.yoesuv.androidroom.utils.dialogInsertUpdateTask
 import com.yoesuv.androidroom.utils.dialogMenu
@@ -26,6 +28,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        if (Utility.isVanillaIceCreamAndUp()) {
+            enableEdgeToEdge()
+        }
 
         setupBinding()
         setupToolbar()
@@ -47,7 +52,7 @@ class MainActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    private fun setupBinding(){
+    private fun setupBinding() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         binding.lifecycleOwner = this
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
@@ -58,25 +63,30 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun setupToolbar(){
+    private fun setupToolbar() {
         setSupportActionBar(binding.toolbarMain)
         supportActionBar?.title = getString(R.string.my_task)
     }
 
-    private fun setupRecycler(){
-        binding.recyclerViewMain.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
+    private fun setupRecycler() {
+        binding.recyclerViewMain.addItemDecoration(
+            DividerItemDecoration(
+                this,
+                DividerItemDecoration.VERTICAL
+            )
+        )
         adapter = ListTaskAdapter(listTask) { position, task ->
             dialogMenu(this, {
                 showDialogEdit(task, position)
-            },{
+            }, {
                 removeTask(task, position)
             })
         }
         binding.recyclerViewMain.adapter = adapter
     }
 
-    private fun onListDataChange(listTask: List<MyTaskModel>){
-        if(listTask.isNotEmpty()) {
+    private fun onListDataChange(listTask: List<MyTaskModel>) {
+        if (listTask.isNotEmpty()) {
             this.listTask.clear()
             for (i: Int in 0 until (listTask.size)) {
                 this.listTask.add(listTask[i])
