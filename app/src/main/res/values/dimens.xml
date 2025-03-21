@@ -2,5 +2,5 @@
 <resources>
     <dimen name="item_task_margin">14dp</dimen>
     <dimen name="item_task_menu_size">28dp</dimen>
-    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="fab_margin">32dp</dimen>
 </resources>

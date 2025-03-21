@@ -28,9 +28,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (Utility.isVanillaIceCreamAndUp()) {
-            enableEdgeToEdge()
-        }
 
         setupBinding()
         setupToolbar()
@@ -38,6 +35,18 @@ class MainActivity : AppCompatActivity() {
         viewModel.showAllTask()
 
         setupRecycler()
+
+        if (Utility.isVanillaIceCreamAndUp()) {
+            enableEdgeToEdge()
+            Utility.insetsPadding(binding.root, left = true, right = true)
+            Utility.insetsPadding(
+                binding.appBarLayoutMain,
+                top = true,
+                color = getColor(R.color.pink_500)
+            )
+            Utility.insetsPadding(binding.recyclerViewMain, bottom = true)
+            Utility.insetsPadding(binding.fabMain, bottom = true, right = true)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
