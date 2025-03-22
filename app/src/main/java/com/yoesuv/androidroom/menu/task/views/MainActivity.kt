@@ -6,6 +6,10 @@ import androidx.activity.enableEdgeToEdge
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.ViewGroup
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updateLayoutParams
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.yoesuv.androidroom.R
@@ -45,8 +49,8 @@ class MainActivity : AppCompatActivity() {
                 color = getColor(R.color.pink_500)
             )
             Utility.insetsPadding(binding.recyclerViewMain, bottom = true)
-            Utility.insetsPadding(binding.fabMain, bottom = true, right = true)
         }
+        adjustFab()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -126,6 +130,23 @@ class MainActivity : AppCompatActivity() {
         listTask.removeAt(position)
         adapter.notifyItemRemoved(position)
         adapter.notifyItemRangeChanged(position, listTask.size)
+    }
+
+    private fun adjustFab() {
+        if (Utility.isVanillaIceCreamAndUp()) {
+            ViewCompat.setOnApplyWindowInsetsListener(binding.fabMain) { view, windowInsets ->
+                val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
+
+                val extra = resources.getDimensionPixelSize(R.dimen.fab_margin)
+                // Apply margin to FAB to avoid overlapping with navigation bar
+                view.updateLayoutParams<ViewGroup.MarginLayoutParams> {
+                    bottomMargin = insets.bottom + extra
+                    rightMargin = insets.right + extra
+                }
+
+                WindowInsetsCompat.CONSUMED
+            }
+        }
     }
 
 }
