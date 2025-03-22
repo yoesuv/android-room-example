@@ -1,7 +1,7 @@
 ## Android Room Example ##
 ![Build Status](https://github.com/yoesuv/android-room-example/actions/workflows/github-actions.yml/badge.svg)
 
-Basic CRUD App [Download APK](https://e.pcloud.link/publink/show?code=XZDD6xZJsOF2VQjfFpiI3GfB398h7VCECNX)  
+Basic CRUD App [Download APK](https://e.pcloud.link/publink/show?code=XZ1A0dZVi8sXb5pfqbOM9cezu6NIJ3QoN6V)  
 to run UI Test, execute `./gradlew connectedForTestDebugAndroidTest`
 
 ### Screenshot ###
