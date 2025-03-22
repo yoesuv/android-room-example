@@ -4,44 +4,45 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="popup"
-            type="com.yoesuv.androidroom.menu.task.viewmodels.PopupInsertUpdateTaskViewModel"/>
+            type="com.yoesuv.androidroom.menu.task.viewmodels.PopupInsertUpdateTaskViewModel" />
     </data>
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <com.google.android.material.textview.MaterialTextView
-            android:background="@color/pink_500"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
+            android:background="@color/pink_500"
             android:gravity="center"
             android:text="@{popup.popupTitle}"
-            android:textStyle="bold"
-            android:textSize="18sp"
             android:textColor="@android:color/white"
-            tools:text="@string/insert_new_task"/>
+            android:textSize="18sp"
+            android:textStyle="bold"
+            tools:text="@string/insert_new_task" />
 
         <!-- input task title -->
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/item_task_margin"
+            android:layout_marginTop="@dimen/item_task_margin_v"
             app:error="@{popup.titleError}">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextTaskTitle"
-                android:background="@android:color/white"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@android:color/white"
                 android:hint="@string/hint_task_title"
-                android:inputType="text"
                 android:imeOptions="actionDone"
-                android:text="@={popup.title}"/>
+                android:inputType="text"
+                android:text="@={popup.title}" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -50,18 +51,18 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/item_task_margin"
+            android:layout_marginBottom="@dimen/item_task_margin_v"
             app:error="@{popup.contentError}">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextTaskContent"
-                android:background="@android:color/white"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@android:color/white"
                 android:hint="@string/hint_task_content"
-                android:inputType="textMultiLine"
                 android:imeOptions="actionDone"
-                android:text="@={popup.content}"/>
+                android:inputType="textMultiLine"
+                android:text="@={popup.content}" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -75,24 +76,24 @@
                 style="@style/AppButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/guidelineCenter"
-                app:layout_constraintTop_toTopOf="parent"
                 android:text="@android:string/cancel"
-                app:icon="@drawable/ic_delete_sign" />
+                app:icon="@drawable/ic_delete_sign"
+                app:layout_constraintEnd_toStartOf="@id/guidelineCenter"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/buttonApply"
                 style="@style/AppButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintStart_toEndOf="@+id/guidelineCenter"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
                 android:onClick="@{popup::clickApply}"
                 android:text="@{popup.buttonAction}"
                 app:icon="@drawable/ic_save_as"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/guidelineCenter"
+                app:layout_constraintTop_toTopOf="parent"
                 tools:text="@string/button_new_task_save" />
 
             <androidx.constraintlayout.widget.Guideline
@@ -100,7 +101,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.5"/>
+                app:layout_constraintGuide_percent="0.5" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

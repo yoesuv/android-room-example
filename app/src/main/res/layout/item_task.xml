@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="itemTask"
-            type="com.yoesuv.androidroom.menu.task.viewmodels.ItemTaskViewModel"/>
+            type="com.yoesuv.androidroom.menu.task.viewmodels.ItemTaskViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,33 +18,34 @@
             android:id="@+id/itemContent"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/item_task_margin"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginHorizontal="@dimen/item_task_margin_h"
+            android:layout_marginVertical="@dimen/item_task_margin_v"
+            android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/ivMenuMore"
-            android:orientation="vertical">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/textViewTaskTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
                 android:text="@{itemTask.title}"
+                android:textColor="@drawable/selector_black_pink"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:textColor="@drawable/selector_black_pink"
-                android:maxLines="1"
-                android:ellipsize="end"
                 tools:text="@tools:sample/lorem" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/textViewTaskContent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
                 android:text="@{itemTask.content}"
                 android:textColor="@drawable/selector_black_pink"
-                android:maxLines="1"
-                android:ellipsize="end"
                 tools:text="@tools:sample/lorem" />
 
         </LinearLayout>
@@ -52,11 +54,12 @@
             android:id="@+id/ivMenuMore"
             android:layout_width="@dimen/item_task_menu_size"
             android:layout_height="@dimen/item_task_menu_size"
-            app:tint="@drawable/selector_black_pink"
-            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginEnd="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:srcCompat="@drawable/ic_menu_more_vertical"/>
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_menu_more_vertical"
+            app:tint="@drawable/selector_black_pink" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
