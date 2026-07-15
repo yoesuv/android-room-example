@@ -7,12 +7,16 @@ plugins {
 
 android {
     namespace = "com.yoesuv.androidroom"
-    compileSdk = 35
+    compileSdk {
+        version = release(36) {
+            minorApiLevel = 1
+        }
+    }
 
     defaultConfig {
         applicationId = "com.yoesuv.androidroom"
         minSdk = 24
-        targetSdk = 35
+        targetSdk = 36
         versionCode = 1
         versionName = "2.1.8"
 
