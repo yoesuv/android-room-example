@@ -5,7 +5,7 @@ on:
     branches:
       - master
   pull_request:
-    brances:
+    branches:
       - master
 jobs:
   Explore-GitHub-Actions:
@@ -21,12 +21,53 @@ jobs:
           distribution: 'zulu'
           java-version: '21'
           cache: 'gradle'
-      - name : Verify Java Version
+      - name: Verify Java Version
         run: java --version
       - name: Setup Android SDK Tools
         uses: android-actions/setup-android@v3
-      - name: Make gradlew executable
-        run: chmod +x ./gradlew
-      - name: build apk release
+      - name: Build APK release
         run: ./gradlew assembleProductionRelease
       - run: echo "🍏 This job's status is ${{ job.status }}."
+
+  Instrumented-Tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      - name: Setup Java JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '21'
+          cache: 'gradle'
+      - name: Setup Android SDK Tools
+        uses: android-actions/setup-android@v3
+      - name: Enable KVM for emulator
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_mode=kvm"' | sudo tee /etc/udev/rules.d/99-kvm.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: Run instrumented tests on emulator
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 30
+          target: default
+          arch: x86_64
+          profile: pixel_5
+          sdcard-path-or-size: 1G
+          disable-animations: true
+          enable-kvm: true
+          emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim
+          script: |
+            ./gradlew connectedForTestDebugAndroidTest
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: instrumented-test-results
+          path: |
+            app/build/outputs/androidTest-results/connected/**/*.xml
+            app/build/reports/androidTest/connected/**/*.html
+            app/build/outputs/androidTest-results/connected/**/*.png
+          if-no-files-found: warn
+      - run: echo "🤖 This job's status is ${{ job.status }}."

@@ -31,7 +31,7 @@ abstract class TaskDatabase : RoomDatabase() {
         private fun create(context: Context): TaskDatabase {
             val dbBuilder =
                 Room.databaseBuilder(context, TaskDatabase::class.java, AppConstant.DATABASE_NAME)
-                    .fallbackToDestructiveMigration()
+                    .fallbackToDestructiveMigration(dropAllTables = true)
             if (BuildConfig.DEBUG) {
                 dbBuilder.setQueryCallback({ sqlQuery, bindArgs ->
                     Log.d(

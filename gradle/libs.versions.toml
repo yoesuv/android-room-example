@@ -1,7 +1,7 @@
 [versions]
-agp = "8.8.1"
-kotlin = "2.0.0"
-ksp = "2.0.0-1.0.24"
+agp = "9.2.1"
+kotlin = "2.3.0"
+ksp = "2.3.6"
 coreKtx = "1.15.0"
 appcompat = "1.7.0"
 material = "1.12.0"
@@ -10,7 +10,7 @@ junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
 viewModelKtx = "2.8.7"
-room = "2.6.1"
+room = "2.8.4"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -28,6 +28,4 @@ androidx-room-compiler = {group = "androidx.room", name = "room-compiler", versi
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
-jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
-jetbrainsKotlinKapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
