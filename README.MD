@@ -1,13 +1,34 @@
-## Android Room Example ##
+## Android Room Example
+
+A simple task management app that demonstrates local data storage using Android Room. Create, edit, and delete tasks — all stored on your device.
+
 ![Build Status](https://github.com/yoesuv/android-room-example/actions/workflows/github-actions.yml/badge.svg)
 
-Basic CRUD App [Download APK](https://e.pcloud.link/publink/show?code=XZ1A0dZVi8sXb5pfqbOM9cezu6NIJ3QoN6V)  
-to run UI Test, execute `./gradlew connectedForTestDebugAndroidTest`
+### Features
 
-### Screenshot ###
+- Add new tasks with a title and content
+- Edit existing tasks
+- Delete individual tasks or clear all at once
+- Tasks are saved locally and persist after closing the app
+
+### Screenshots
+
 | ![](https://i.imgur.com/muj97TJ.png) | ![](https://i.imgur.com/wlkrJgq.png) | ![](https://i.imgur.com/N95oBo6.png) | ![](https://i.imgur.com/ny1fb2H.png) |
-| :--: | :--: | :--: | :--: |
+| :----------------------------------: | :----------------------------------: | :----------------------------------: | :----------------------------------: |
 
-**List Libraries used In This Project**
-- [Lifecycle](https://developer.android.com/jetpack/androidx/releases/lifecycle)
-- [Room](https://developer.android.com/jetpack/androidx/releases/room)
+### Requirements
+
+- Android 7.0 (API 24) or higher
+
+### Running UI Tests
+
+```
+./gradlew connectedForTestDebugAndroidTest
+```
+
+### Tech Stack
+
+- Kotlin
+- Room (local database)
+- MVVM architecture
+- Material Design 3
