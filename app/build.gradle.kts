@@ -1,10 +1,18 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.ksp)
+    base
+}
+
+val appApplicationId = "com.yoesuv.androidroom"
+val appVersionName = "2.1.9"
+
+base {
+    archivesName = "$appApplicationId-v$appVersionName"
 }
 
 android {
-    namespace = "com.yoesuv.androidroom"
+    namespace = appApplicationId
     compileSdk {
         version = release(36) {
             minorApiLevel = 1
@@ -12,11 +20,11 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.yoesuv.androidroom"
+        applicationId = appApplicationId
         minSdk = 24
         targetSdk = 36
         versionCode = 1
-        versionName = "2.1.8"
+        versionName = appVersionName
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
@@ -24,7 +32,8 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
@@ -49,6 +58,16 @@ android {
             resValue("string", "app_name", "Android Room")
             dimension = "default"
             isDefault = true
+        }
+    }
+}
+
+androidComponents {
+    onVariants { variant ->
+        variant.outputs.forEach { output ->
+            val appId = variant.applicationId.get()
+            val versionName = output.versionName.get()
+            output.outputFileName.set("$appId-v$versionName-${variant.name}.apk")
         }
     }
 }
