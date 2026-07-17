@@ -3,10 +3,10 @@ run-name: ${{ github.actor }} is building Room Example 🚀
 on:
   push:
     branches:
-      - refs/heads/master
+      - master
   pull_request:
     branches:
-      - refs/heads/master
+      - master
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
